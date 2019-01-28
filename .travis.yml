@@ -17,8 +17,6 @@ jobs:
         - make tests_run
         - gcov tests
         - gcovr -r . -x --object-directory=. > report.xml
-         if: branch = master
-        - sonar-scanner -D sonar.host.url=$SONAR_HOST_URL -D sonar.login=$SONAR_TOKEN -X
 
 
 env:
