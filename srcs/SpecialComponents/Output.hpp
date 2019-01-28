@@ -8,17 +8,17 @@
 #ifndef OUTPUT_HPP_
 	#define OUTPUT_HPP_
 
-#include "ISpecialComponent.hpp"
+#include "IComponent.hpp"
 
-class Output : public ISpecialComponent {
+class Output : public nts::ISpecialComponent {
     public:
         Output(std::string);
         ~Output();
 
-        ISpecialComponent::Tristate getValue() const noexcept;
+        nts::Tristate getValue() const noexcept;
     private:
         std::string _name;
-        ISpecialComponent::Tristate _value;
+        nts::Tristate _value;
 };
 
 Output::Output(std::string name) :
@@ -30,7 +30,7 @@ Output::~Output()
 {
 }
 
-ISpecialComponent::Tristate Output::getValue() const noexcept
+nts::Tristate Output::getValue() const noexcept
 {
     return (_value);
 }

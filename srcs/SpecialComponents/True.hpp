@@ -8,17 +8,17 @@
 #ifndef TRUE_HPP_
 	#define TRUE_HPP_
 
-#include "ISpecialComponent.hpp"
+#include "IComponent.hpp"
 
-class True : public ISpecialComponent {
+class True : public nts::ISpecialComponent {
     public:
         True(std::string);
         ~True();
 
-        ISpecialComponent::Tristate getValue() const noexcept;
+        nts::Tristate getValue() const noexcept;
     private:
         std::string _name;
-        ISpecialComponent::Tristate _value;
+        nts::Tristate _value;
 };
 
 True::True(std::string name) :
@@ -30,7 +30,7 @@ True::~True()
 {
 }
 
-ISpecialComponent::Tristate True::getValue() const noexcept
+nts::Tristate True::getValue() const noexcept
 {
     return (_value);
 }
