@@ -9,15 +9,16 @@ INCLUDE_DIR=	./includes/
 
 TESTS_DIR=	./tests/
 
-CC	=	g++
+CXX	=	g++ -std=c++11
 
 RM	=	rm -f
 
 SRC_DIR	=	srcs/
 
-SRC	=	$(SRC_DIR)main.cpp
+SRC	=	$(SRC_DIR)main.cpp\
+		$(SRC_DIR)test.cpp\
 
-CFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror
 
 CPPFLAGS=	-I$(INCLUDE_DIR)
 
@@ -38,7 +39,11 @@ ut_clean:
 	$(MAKE) fclean -C $(TESTS_DIR)
 
 $(NAME):	$(OBJ)
+<<<<<<< HEAD
 	$(CC) -o $(NAME) $(OBJ)
+=======
+	$(CXX) -o $(NAME) $(OBJ)
+>>>>>>> 239c59194579ca7e4271a61f0cc38c09a3ddbd3f
 
 clean:
 	$(RM) $(OBJ)

@@ -5,28 +5,29 @@
 ## unit_test_makefile
 ##
 
-CC	=	g++
+CXX	=	g++ -std=c++11
 
 RM	=	rm -f
 
 SRC_DIR	=	../srcs/
 
-SRC_TEST=	ut_test.cpp\
+SRC_TEST =	ut_test.cpp
 
 OBJ	=	$(SRC_TEST:.cpp=.o)
 
-CFLAGS	=	-lcriterion --coverage
+CXXFLAGS	=	-lcriterion --coverage
 
 CPPFLAGS=	-I../includes/
 
-LDFLAGS	=	-lcriterion --coverage
+LDFLAGS	=	-lcriterion --coverage -lgcov
 
-NAME	=	my_malloc
+NAME	=	nanotek
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
+	$(CXX) -c $(SRC_DIR)/test.cpp
+	$(CXX) -o $(NAME) $(OBJ) test.o $(LDFLAGS)
 	./$(NAME)
 
 clean:

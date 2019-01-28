@@ -1,0 +1,6 @@
+projectKey=nano
+serverUrl=http://91.121.150.220:9000
+serverVersion=6.7.0.33306
+dashboardUrl=http://91.121.150.220:9000/dashboard/index/nano
+ceTaskId=AWiFkmurjy-fT_BdCRFS
+ceTaskUrl=http://91.121.150.220:9000/api/ce/task?id=AWiFkmurjy-fT_BdCRFS
