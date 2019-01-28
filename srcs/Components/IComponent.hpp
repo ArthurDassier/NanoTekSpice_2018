@@ -22,7 +22,6 @@ namespace nts
     class IComponent
     {
         public:
-            IComponent();
             ~IComponent();
             virtual ~IComponent() = default;
 

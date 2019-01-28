@@ -13,20 +13,30 @@
 class Component_2716 : public nts::IComponent
 {
     public:
-        Component_2716();
+        Component_2716(std::string);
         ~Component_2716();
 
         nts::Tristate compute(std::size_t pin = 1);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
+        std::string getName();
+
+    private:
+        std::string _name;
 };
 
-Component_2716::Component_2716()
+Component_2716::Component_2716(std::string name) :
+    _name(name)
 {
 }
 
 Component_2716::~Component_2716()
 {
+}
+
+std::string Component_2716::getName()
+{
+    return (_name);
 }
 
 nts::Tristate Component_2716::compute(std::size_t pin = 1)
