@@ -18,11 +18,12 @@ class Circus {
         Circus();
         ~Circus();
 
-    std::vector<&nts::IComponent> my_circus;
     void addComponent(nts::IComponent &obj);
     void removeComponent(std::string name);
     void run();
 
+    private:
+        std::vector<nts::IComponent &> my_circus;
 };
 
 Circus::Circus()
