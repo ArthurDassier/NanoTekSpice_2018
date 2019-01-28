@@ -41,6 +41,7 @@ ut_clean:
 $(NAME):	$(OBJ)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(CC) -o $(NAME) $(OBJ)
 =======
 	$(CXX) -o $(NAME) $(OBJ)
@@ -48,6 +49,9 @@ $(NAME):	$(OBJ)
 =======
 	$(CXX) -o $(NAME) $(OBJ)
 >>>>>>> 239c59194579ca7e4271a61f0cc38c09a3ddbd3f
+=======
+	$(CXX) -o $(NAME) $(OBJ)
+>>>>>>> fae23251a1910bfea85d879b451c4b6893c7212a
 
 clean:
 	$(RM) $(OBJ)
