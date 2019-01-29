@@ -43,8 +43,8 @@ Component_4081::~Component_4081()
 
 nts::Tristate Component_4081::operand(std::size_t in1, std::size_t in2)
 {
-    if (inputs[1].compute(output[1]) == nts::TRUE
-    && inputs[2].compute(output[2]) == nts::TRUE)
+    if (inputs[in1].compute(output[in1]) == nts::TRUE
+    && inputs[in2].compute(output[in2]) == nts::TRUE)
         return (nts::TRUE);
     return (nts::FALSE);
 }
