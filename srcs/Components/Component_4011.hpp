@@ -44,10 +44,27 @@ nts::Tristate Component_4011::compute(std::size_t pin = 1)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (!(inputs[1].compute(output[1]) == nts::TRUE &
-    inputs[2].compute(output[2]) == nts::TRUE))
-        return (nts::TRUE);
-    return (nts::UNDEFINED);
+    if (pin == 3) {
+        if (!(inputs[1].compute(output[1]) == nts::TRUE
+        && inputs[2].compute(output[2]) == nts::TRUE))
+            return (nts::TRUE);
+    }
+    if (pin == 4) {
+        if (!(inputs[5].compute(output[5]) == nts::TRUE
+        && inputs[6].compute(output[6]) == nts::TRUE))
+            return (nts::TRUE);
+    }
+    if (pin == 10) {
+        if (!(inputs[9].compute(output[9]) == nts::TRUE
+        && inputs[8].compute(output[8]) == nts::TRUE))
+            return (nts::TRUE);
+    }
+    if (pin == 11) {
+        if (!(inputs[12].compute(output[12]) == nts::TRUE
+        && inputs[13].compute(output[13]) == nts::TRUE))
+            return (nts::TRUE);
+    }
+    return (nts::FALSE);
 }
 
 void Component_4011::dump() const
@@ -57,7 +74,7 @@ void Component_4011::dump() const
 
 bool Component_4011::check_input(std::size_t pin)
 {
-    if (pin == 1 && pin == 2 || pin == 5 || pin == 6 || pin == 8
+    if (pin == 1 || pin == 2 || pin == 5 || pin == 6 || pin == 8
     || pin == 9 || pin == 12  || pin == 13)
         return (true);
     return (false);
