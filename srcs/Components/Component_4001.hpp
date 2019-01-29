@@ -45,23 +45,23 @@ nts::Tristate Component_4001::compute(std::size_t pin = 1)
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
     if (pin == 3) {
-        if (inputs[1].compute(output[1]) == nts::TRUE ||
-        inputs[2].compute(output[2]) == nts::TRUE)
+        if (inputs[1].compute(output[1]) == nts::TRUE
+        || inputs[2].compute(output[2]) == nts::TRUE)
             return (nts::FALSE);
     }
     if (pin == 4) {
-        if (inputs[5].compute(output[5]) == nts::TRUE ||
-        inputs[6].compute(output[6]) == nts::TRUE)
+        if (inputs[5].compute(output[5]) == nts::TRUE
+        || inputs[6].compute(output[6]) == nts::TRUE)
             return (nts::FALSE);
     }
     if (pin == 10) {
-        if (inputs[8].compute(output[8]) == nts::TRUE ||
-        inputs[9].compute(output[9]) == nts::TRUE)
+        if (inputs[8].compute(output[8]) == nts::TRUE
+        || inputs[9].compute(output[9]) == nts::TRUE)
             return (nts::FALSE);
     }
     if (pin == 11) {
-        if (inputs[12].compute(output[12]) == nts::TRUE ||
-        inputs[13].compute(output[13]) == nts::TRUE)
+        if (inputs[12].compute(output[12]) == nts::TRUE
+        || inputs[13].compute(output[13]) == nts::TRUE)
             return (nts::FALSE);
     }
     return (nts::TRUE);

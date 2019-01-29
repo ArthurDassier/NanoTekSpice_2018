@@ -18,6 +18,7 @@ class Component_4008 : public nts::IComponent
 
         // Members
         nts::Tristate compute(std::size_t pin = 1);
+        nts::Tristate operand(std::size_t, std::size_t, std::size_t);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
@@ -40,42 +41,30 @@ Component_4008::~Component_4008()
 {
 }
 
+nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::size_t in3)
+{
+    if (inputs[in1].compute(output[in1]) == nts::TRUE
+    ^ inputs[in2].compute(output[in2]) == nts::TRUE) {
+        if (inputs[in3].compute(output[in3]) == nts::FALSE)
+            return (nts::TRUE);
+        else
+            return (nts::FALSE);
+    }
+    return (nts::UNDEFINED);
+}
+
 nts::Tristate Component_4008::compute(std::size_t pin = 1)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (pin == 10) {
-        if (inputs[6].compute(output[6]) == nts::TRUE
-        ^ inputs[7].compute(output[7]) == nts::TRUE)
-            if (inputs[9].compute(output[9]) == nts::FALSE)
-                return (nts::TRUE);
-            else
-                return (nts::FALSE);
-        }
-    if (pin == 11) {
-        if (inputs[4].compute(output[4]) == nts::TRUE
-        ^ inputs[5].compute(output[5]) == nts::TRUE)
-            if (this->compute(output[10]) == nts::FALSE)
-                return (nts::TRUE);
-            else
-                return (nts::FALSE);
-    }
-    if (pin == 12) {
-        if (inputs[2].compute(output[2]) == nts::TRUE
-        ^ inputs[3].compute(output[3]) == nts::TRUE)
-            if (this->compute(output[11]) == nts::FALSE)
-                return (nts::TRUE);
-            else
-                return (nts::FALSE);
-    }
-    if (pin == 13) {
-        if (inputs[1].compute(output[1]) == nts::TRUE
-        ^ inputs[15].compute(output[15]) == nts::TRUE)
-            if (this->compute(output[12]) == nts::FALSE)
-                return (nts::TRUE);
-            else
-                return (nts::FALSE);
-    }
+    if (pin == 10)
+        return (operand(6, 7, 9));
+    if (pin == 11)
+        return (operand(4, 5, this->compute[10]));
+    if (pin == 12)
+        return (operand(2, 3, this->compute[11]));
+    if (pin == 13)
+        return (operand(1, 15, this->compute[12]));
     return (nts::UNDEFINED);
 }
 

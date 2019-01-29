@@ -21,8 +21,13 @@ class Component_4040 : public nts::IComponent
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
 
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
+        std::unordered_map<std::size_t, nts::IComponent &> inputs;
+        std::unordered_map<std::size_t, std::size_t> output;
 };
 
 Component_4040::Component_4040(std::string name) :
@@ -41,18 +46,39 @@ std::string Component_4040::getName()
 
 nts::Tristate Component_4040::compute(std::size_t pin = 1)
 {
-
+    if (!(check_output(pin)))
+        return (nts::UNDEFINED);
+    if (inputs[11].compute(11) == nts::TRUE)
+        return (nts::FALSE);
+    else
+        return (inputs[pin].compute(pin));
 }
 
 void Component_4040::dump() const
 {
+    std::cout << _name << std::endl;
+}
 
+bool Component_4040::check_input(std::size_t pin)
+{
+    if (pin == 10 || pin == 11)
+        return (true);
+    return (false);
+}
+
+bool Component_4040::check_output(std::size_t pin)
+{
+    if (pin >= 1 || pin <= 7 || pin >= 12 || pin <= 15)
+        return (true);
+    return (false);
 }
 
 void Component_4040::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
-
+    if (check_input(pin)) {
+        inputs[pin] = other;
+        output[pin] = otherPin;
+    }
 }
-
 
 #endif /* !COMPONENT_4040_HPP_ */

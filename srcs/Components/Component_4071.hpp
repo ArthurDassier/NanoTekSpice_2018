@@ -18,6 +18,7 @@ class Component_4071 : public nts::IComponent
 
         // Members
         nts::Tristate compute(std::size_t pin = 1);
+        nts::Tristate operand(std::size_t, std::size_t);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
@@ -40,31 +41,27 @@ Component_4071::~Component_4071()
 {
 }
 
+nts::Tristate Component_4071::operand(std::size_t in1, std::size_t in2)
+{
+    if (inputs[in1].compute(output[in1]) == nts::TRUE
+    || inputs[in2].compute(output[in2]) == nts::TRUE)
+        return (nts::TRUE);
+    return (nts::FALSE);
+}
+
 nts::Tristate Component_4071::compute(std::size_t pin = 1)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (pin == 3) {
-        if (inputs[1].compute(output[1]) == nts::TRUE
-        || inputs[2].compute(output[2]) == nts::TRUE)
-            return (nts::TRUE);
-    }
-    if (pin == 4) {
-        if (inputs[5].compute(output[5]) == nts::TRUE
-        || inputs[6].compute(output[6]) == nts::TRUE)
-            return (nts::TRUE);
-    }
-    if (pin == 10) {
-        if (inputs[9].compute(output[9]) == nts::TRUE
-        || inputs[8].compute(output[8]) == nts::TRUE)
-            return (nts::TRUE);
-    }
-    if (pin == 11) {
-        if (inputs[12].compute(output[12]) == nts::TRUE
-        || inputs[13].compute(output[13]) == nts::TRUE)
-            return (nts::TRUE);
-    }
-    return (nts::FALSE);
+    if (pin == 3)
+        return (operand(1, 2));
+    if (pin == 4)
+        return (operand(5, 6));
+    if (pin == 10)
+        return (operand(9, 8));
+    if (pin == 11)
+        return (operand(12, 13));
+    return (nts::UNDEFINED);
 }
 
 void Component_4071::dump() const
