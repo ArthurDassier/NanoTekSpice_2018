@@ -44,7 +44,7 @@ Component_4011::~Component_4011()
 nts::Tristate Component_4011::operand(std::size_t in1, std::size_t in2)
 {
     if (!(inputs[in1].compute(output[in1]) == nts::TRUE
-        && inputs[in2].compute(output[in2]) == nts::TRUE))
+    && inputs[in2].compute(output[in2]) == nts::TRUE))
         return (nts::TRUE);
     return (nts::FALSE);
 }
@@ -61,7 +61,7 @@ nts::Tristate Component_4011::compute(std::size_t pin = 1)
         return (operand(9, 8));
     if (pin == 11)
         return (operand(12, 13));
-    return (nts::FALSE);
+    return (nts::UNDEFINED);
 }
 
 void Component_4011::dump() const

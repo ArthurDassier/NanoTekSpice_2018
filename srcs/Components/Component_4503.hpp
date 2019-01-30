@@ -85,7 +85,7 @@ bool Component_4503::check_input(std::size_t pin)
 
 bool Component_4503::check_output(std::size_t pin)
 {
-    if (pin == 1 || pin == 2 || pin == 9 || pin == 12 || pin == 13)
+    if (pin == 3 || pin == 5 || pin == 7 || pin == 9 || pin == 11 || pin == 13)
         return (true);
     return (false);
 }
