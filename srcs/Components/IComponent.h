@@ -22,5 +22,4 @@ class IComponent
         /* data */
 };
 
-
 #endif /* !ICOMPONENT_H_ */
