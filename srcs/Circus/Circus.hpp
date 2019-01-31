@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "IComponent.hpp"
 
 class Circus {
@@ -23,7 +24,7 @@ class Circus {
     void run();
 
     private:
-        std::vector<nts::IComponent &> my_circus;
+        std::vector<std::unique_ptr<IComponent>> my_circus;
 };
 
 Circus::Circus()
