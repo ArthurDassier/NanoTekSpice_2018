@@ -15,31 +15,60 @@ class True : public nts::IComponent {
         True(std::string);
         ~True();
 
-        nts::Tristate getValue() const noexcept;
-        void dump() const noexcept;
+        // Members
+        nts::Tristate compute(std::size_t pin = 1);
+        void dump() const;
+        void setLink(std::size_t, nts::IComponent &, std::size_t);
+        std::string getName();
+
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
-        nts::Tristate _value;
+        std::unordered_map<std::size_t, nts::IComponent &> inputs;
+        std::unordered_map<std::size_t, std::size_t> output;
 };
 
 True::True(std::string name) :
     _name(name)
 {
-    _value = nts::TRUE;
 }
 
 True::~True()
 {
 }
 
-nts::Tristate True::getValue() const noexcept
+nts::Tristate True::compute(std::size_t pin = 1)
 {
-    return (_value);
+    if (!(check_output(pin)))
+        return (nts::UNDEFINED);
+    return (nts::TRUE);
 }
 
 void True::dump() const noexcept
 {
     std::cout << _name << std::endl;
+}
+
+bool True::check_input(std::size_t pin)
+{
+    if (pin == 1)
+        return (true);
+    return (false);
+}
+
+bool True::check_output(std::size_t pin)
+{
+    return (false);
+}
+
+void True::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
+{
+    if (check_input(pin)) {
+        inputs[pin] = other;
+        output[pin] = otherPin;
+    }
 }
 
 #endif /* !TRUE_HPP_ */

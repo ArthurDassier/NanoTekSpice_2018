@@ -34,6 +34,8 @@ class Component_4514 : public nts::IComponent
 Component_4514::Component_4514(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 24; ++i)
+        output[i] = 0;
 }
 
 Component_4514::~Component_4514()

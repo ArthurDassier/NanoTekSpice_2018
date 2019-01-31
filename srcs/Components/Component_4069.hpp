@@ -34,6 +34,8 @@ class Component_4069 : public nts::IComponent
 Component_4069::Component_4069(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 14; ++i)
+        output[i] = 0;
 }
 
 Component_4069::~Component_4069()
@@ -43,6 +45,8 @@ Component_4069::~Component_4069()
 nts::Tristate Component_4069::compute(std::size_t pin = 1)
 {
     if (!(check_output(pin)))
+        return (nts::UNDEFINED);
+    if (output[pin - 1] == 0)
         return (nts::UNDEFINED);
     if (inputs[pin - 1].compute(pin - 1) == nts::TRUE)
         return (nts::FALSE);

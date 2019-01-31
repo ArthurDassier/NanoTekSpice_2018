@@ -33,6 +33,8 @@ class Component_4040 : public nts::IComponent
 Component_4040::Component_4040(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 16; ++i)
+        output[i] = 0;
 }
 
 Component_4040::~Component_4040()
@@ -48,7 +50,9 @@ nts::Tristate Component_4040::compute(std::size_t pin = 1)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (inputs[11].compute(11) == nts::TRUE)
+    if (output[pin] == 0 || output[11] == 0)
+        return (nts::UNDEFINED);
+    if (inputs[11].compute(output[11]) == nts::TRUE)
         return (nts::FALSE);
     else
         return (inputs[pin].compute(pin));

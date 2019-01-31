@@ -42,8 +42,7 @@ Component_4017::~Component_4017()
 
 nts::Tristate Component_4017::compute(std::size_t pin = 1)
 {
-    if (!(check_output(pin)))
-        return (nts::UNDEFINED);
+    return (nts::UNDEFINED);
 }
 
 void Component_4017::dump() const

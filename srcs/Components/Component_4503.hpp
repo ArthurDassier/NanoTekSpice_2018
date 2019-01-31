@@ -35,6 +35,8 @@ class Component_4503 : public nts::IComponent
 Component_4503::Component_4503(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 16; ++i)
+        output[i] = 0;
 }
 
 Component_4503::~Component_4503()
@@ -43,6 +45,8 @@ Component_4503::~Component_4503()
 
 nts::Tristate Component_4503::operand(std::size_t in1, std::size_t in2)
 {
+    if (output[in1] == 0 || output[in2] == 0)
+        return (nts::UNDEFINED);
     if (inputs[in1].compute(output[in1]) == nts::FALSE)
         return (nts::UNDEFINED);
     if (inputs[in1].compute(output[in1]) == nts::TRUE

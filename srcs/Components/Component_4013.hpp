@@ -34,6 +34,8 @@ class Component_4013 : public nts::IComponent
 Component_4013::Component_4013(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 14; ++i)
+        output[i] = 0;
 }
 
 Component_4013::~Component_4013()

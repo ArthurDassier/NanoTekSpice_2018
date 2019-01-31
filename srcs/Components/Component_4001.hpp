@@ -35,6 +35,8 @@ class Component_4001 : public nts::IComponent
 Component_4001::Component_4001(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 13; ++i)
+        output[i] = 0;
 }
 
 Component_4001::~Component_4001()
@@ -43,10 +45,16 @@ Component_4001::~Component_4001()
 
 nts::Tristate Component_4001::operand(std::size_t in1, std::size_t in2)
 {
+    if (output[in1] == 0 || output[in2] == 0)
+        return (nts::UNDEFINED);
     if (inputs[in1].compute(output[in1]) == nts::TRUE
     || inputs[in2].compute(output[in2]) == nts::TRUE)
         return (nts::FALSE);
-    return (nts::TRUE);
+    else if (inputs[in1].compute(output[in1]) == nts::UNDEFINED
+    || inputs[in2].compute(output[in2]) == nts::UNDEFINED)
+        return (nts::UNDEFINED);
+    else
+        return (nts::TRUE);
 }
 
 nts::Tristate Component_4001::compute(std::size_t pin = 1)

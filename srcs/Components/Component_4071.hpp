@@ -35,6 +35,8 @@ class Component_4071 : public nts::IComponent
 Component_4071::Component_4071(std::string name) :
     _name(name)
 {
+    for(size_t i = 1; i != 13; ++i)
+        output[i] = 0;
 }
 
 Component_4071::~Component_4071()
@@ -43,6 +45,8 @@ Component_4071::~Component_4071()
 
 nts::Tristate Component_4071::operand(std::size_t in1, std::size_t in2)
 {
+    if (output[in1] == 0 || output[in2] == 0)
+        return (nts::UNDEFINED);
     if (inputs[in1].compute(output[in1]) == nts::TRUE
     || inputs[in2].compute(output[in2]) == nts::TRUE)
         return (nts::TRUE);
