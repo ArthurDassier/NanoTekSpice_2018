@@ -19,18 +19,23 @@ namespace nts
         FALSE = false
     };
 
-    class IComponent
-    {
+    class IComponent {
         public:
             ~IComponent();
             virtual ~IComponent() = default;
-
 
             virtual nts::Tristate compute(std::size_t pin = 1) = 0;
             virtual void dump() const = 0;
             virtual void setLink(std::size_t, nts::IComponent &, std::size_t) = 0;
     };
 
+    class ISpecialComponent {
+        public:
+            ~ISpecialComponent();
+            virtual ~ISpecialComponent() = default;
+
+            virtual Tristate getValue() const noexcept = 0;
+    };
 };
 
 #endif /* !ICOMPONENT_HPP_ */
