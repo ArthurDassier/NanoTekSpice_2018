@@ -27,50 +27,7 @@ class Component_4017 : public nts::IComponent
 
     private:
         std::string _name;
-        std::unordered_map<std::size_t, nts::IComponent &> inputs;
-        std::unordered_map<std::size_t, std::size_t> output;
+        std::vector<nts::link_t> _list;
 };
-
-Component_4017::Component_4017(std::string name) :
-    _name(name)
-{
-}
-
-Component_4017::~Component_4017()
-{
-}
-
-nts::Tristate Component_4017::compute(std::size_t pin = 1)
-{
-    return (nts::UNDEFINED);
-}
-
-void Component_4017::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
-bool Component_4017::check_input(std::size_t pin)
-{
-    if (pin >= 1 && pin <= 7 || pin >= 9 && pin <= 11)
-        return (true);
-    return (false);
-}
-
-bool Component_4017::check_output(std::size_t pin)
-{
-    if (pin == 1 || pin == 2 || pin == 12 || pin == 13)
-        return (true);
-    return (false);
-}
-
-void Component_4017::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    if (check_input(pin)) {
-        inputs[pin] = other;
-        output[pin] = otherPin;
-    }
-}
-
 
 #endif /* !COMPONENT_4017_HPP_ */

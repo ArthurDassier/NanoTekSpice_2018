@@ -1,6 +1,7 @@
 ### C++ ###
 # Prerequisites
 *.d
+.vscode
 
 # Compiled Object files
 *.slo
@@ -31,3 +32,6 @@
 *.exe
 *.out
 *.app
+
+# UT
+*.gc*
