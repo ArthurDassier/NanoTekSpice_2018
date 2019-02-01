@@ -11,6 +11,7 @@
 #include "IComponent.hpp"
 #include "Component_4001.hpp"
 #include "True.hpp"
+#include "False.hpp"
 
 Test(tests_Component_4001, test_check_input_return_true)
 {
@@ -56,13 +57,23 @@ Test(tests_Component_4001, test_check_output_return_false)
     cr_assert_eq(test.check_output(102), false);
 }
 
-Test(tests_Component_4001, test_check_output_return_false2)
+Test(tests_Component_4001, test_truth_table)
 {
     Component_4001 test("test");
-    True one("one");
-    True deux("deux");
+    True tru("tru");
+    False fals("fals");
 
-    test.setLink(1, one, 1);
-    test.setLink(2, deux, 1);
+    cr_assert_eq(test.compute(3), nts::UNDEFINED);
+    test.setLink(1, tru, 1);
+    test.setLink(2, tru, 1);
+    cr_assert_eq(test.compute(3), nts::FALSE);
+    test.setLink(1, fals, 1);
+    test.setLink(2, fals, 1);
+    cr_assert_eq(test.compute(3), nts::TRUE);
+    test.setLink(1, tru, 1);
+    test.setLink(2, fals, 1);
+    cr_assert_eq(test.compute(3), nts::FALSE);
+    test.setLink(1, fals, 1);
+    test.setLink(2, tru, 1);
     cr_assert_eq(test.compute(3), nts::FALSE);
 }
