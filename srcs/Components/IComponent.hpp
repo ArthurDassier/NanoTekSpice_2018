@@ -20,8 +20,7 @@ namespace nts
         FALSE = false
     };
 
-    class IComponent
-    {
+    class IComponent {
         public:
             virtual ~IComponent() = default;
 
