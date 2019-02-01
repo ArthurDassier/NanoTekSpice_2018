@@ -22,7 +22,7 @@ Component_4013::~Component_4013()
 {
 }
 
-nts::Tristate Component_4013::compute(std::size_t pin = 1)
+nts::Tristate Component_4013::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);

@@ -27,7 +27,7 @@ std::string Component_4040::getName()
     return (_name);
 }
 
-nts::Tristate Component_4040::compute(std::size_t pin = 1)
+nts::Tristate Component_4040::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);

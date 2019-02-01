@@ -21,7 +21,7 @@ std::string Component_2716::getName()
     return (_name);
 }
 
-nts::Tristate Component_2716::compute(std::size_t pin = 1)
+nts::Tristate Component_2716::compute(std::size_t pin)
 {
     return (nts::UNDEFINED);
 }

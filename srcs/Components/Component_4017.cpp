@@ -17,7 +17,7 @@ Component_4017::~Component_4017()
 {
 }
 
-nts::Tristate Component_4017::compute(std::size_t pin = 1)
+nts::Tristate Component_4017::compute(std::size_t pin)
 {
     return (nts::UNDEFINED);
 }

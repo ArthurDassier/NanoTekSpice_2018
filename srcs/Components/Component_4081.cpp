@@ -32,7 +32,7 @@ nts::Tristate Component_4081::operand(std::size_t in1, std::size_t in2)
     return (nts::FALSE);
 }
 
-nts::Tristate Component_4081::compute(std::size_t pin = 1)
+nts::Tristate Component_4081::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);

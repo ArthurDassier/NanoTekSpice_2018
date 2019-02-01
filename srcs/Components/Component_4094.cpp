@@ -23,7 +23,7 @@ std::string Component_4094::getName()
     return (_name);
 }
 
-nts::Tristate Component_4094::compute(std::size_t pin = 1)
+nts::Tristate Component_4094::compute(std::size_t pin)
 {
     return (nts::UNDEFINED);
 }

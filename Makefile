@@ -30,7 +30,17 @@ LIB_DIR	=	./lib/my
 EXE	=	$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4008.cpp	\
 		$(SRC_DIR)/Components/Component_4011.cpp	\
+		$(SRC_DIR)/Components/Component_4013.cpp	\
+		$(SRC_DIR)/Components/Component_4017.cpp	\
 		$(SRC_DIR)/Components/Component_4030.cpp	\
+		$(SRC_DIR)/Components/Component_4040.cpp	\
+		$(SRC_DIR)/Components/Component_4069.cpp	\
+		$(SRC_DIR)/Components/Component_4071.cpp	\
+		$(SRC_DIR)/Components/Component_4081.cpp	\
+		$(SRC_DIR)/Components/Component_4094.cpp	\
+		$(SRC_DIR)/Components/Component_4503.cpp	\
+		$(SRC_DIR)/Components/Component_4512.cpp	\
+		$(SRC_DIR)/Components/Component_4514.cpp	\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 
@@ -40,17 +50,31 @@ UT 	= 	$(UT_DIR)/Components/tests_Component_4001.cpp	\
 		$(UT_DIR)/Components/tests_Component_4008.cpp	\
 		$(UT_DIR)/Components/tests_Component_4011.cpp	\
 		$(UT_DIR)/Components/tests_Component_4030.cpp	\
+		$(UT_DIR)/Components/tests_Component_4069.cpp	\
+		$(UT_DIR)/Components/tests_Component_4071.cpp	\
+		$(UT_DIR)/Components/tests_Component_4081.cpp	\
+		$(UT_DIR)/Components/tests_Component_4503.cpp	\
 
 UT2	=	$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4008.cpp	\
 		$(SRC_DIR)/Components/Component_4011.cpp	\
+		$(SRC_DIR)/Components/Component_4013.cpp	\
+		$(SRC_DIR)/Components/Component_4017.cpp	\
 		$(SRC_DIR)/Components/Component_4030.cpp	\
+		$(SRC_DIR)/Components/Component_4040.cpp	\
+		$(SRC_DIR)/Components/Component_4069.cpp	\
+		$(SRC_DIR)/Components/Component_4071.cpp	\
+		$(SRC_DIR)/Components/Component_4081.cpp	\
+		$(SRC_DIR)/Components/Component_4094.cpp	\
+		$(SRC_DIR)/Components/Component_4503.cpp	\
+		$(SRC_DIR)/Components/Component_4512.cpp	\
+		$(SRC_DIR)/Components/Component_4514.cpp	\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 
 RM	=	rm -f
 
-CXXFLAGS	=	-Wall -Wextra
+CXXFLAGS	+=	-Wall -Wextra
 
 CPPFLAGS=	-I./includes/ -I./srcs/Components -I./srcs/SpecialComponents
 
@@ -64,7 +88,7 @@ INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents
 all:		$(NAME)
 
 $(NAME):
-		g++ $(INCLUDE) $(EXE) -o $(NAME)
+		$(CXX) $(INCLUDE) $(EXE) -o $(NAME)
 
 tests_run:
 		$(CXX) $(INCLUDE) -o UT $(UT) $(UT2) -lcriterion -coverage

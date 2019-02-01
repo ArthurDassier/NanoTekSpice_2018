@@ -27,7 +27,7 @@ nts::Tristate Component_4514::operand(std::size_t in1, std::size_t in2)
 //
 }
 
-nts::Tristate Component_4514::compute(std::size_t pin = 1)
+nts::Tristate Component_4514::compute(std::size_t pin)
 {
     int a = 1;
     int b = 2;

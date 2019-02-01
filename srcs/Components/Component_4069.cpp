@@ -22,17 +22,24 @@ Component_4069::~Component_4069()
 {
 }
 
-nts::Tristate Component_4069::compute(std::size_t pin = 1)
+nts::Tristate Component_4069::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (_list[pin - 1].cmp == NULL)
+    if (pin < 7) {
+        if (_list[pin - 1].cmp == NULL)
+            return (nts::UNDEFINED);
+        if (_list[pin - 1].cmp->compute(_list[pin - 1].output) == nts::TRUE)
+            return (nts::FALSE);
+        else
+            return (nts::TRUE);
+    }
+    if (_list[pin + 1].cmp == NULL)
         return (nts::UNDEFINED);
-    if (_list[pin - 1].cmp->compute(_list[pin - 1].output) == nts::TRUE)
-        return (nts::FALSE);
-    else
-        return (nts::TRUE);
-    return (nts::UNDEFINED);
+    if (_list[pin + 1].cmp->compute(_list[pin + 1].output) == nts::TRUE)
+            return (nts::FALSE);
+        else
+            return (nts::TRUE);
 }
 
 void Component_4069::dump() const
