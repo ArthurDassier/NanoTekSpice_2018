@@ -16,7 +16,7 @@ jobs:
     script: 
       - make tests_run
   - stage: Unit Tests & Sonar
-    if: branch = master
+    if: (NOT type IN (pull_request)) AND (branch = master)
     script:
       - make tests_run
       - gcov tests
