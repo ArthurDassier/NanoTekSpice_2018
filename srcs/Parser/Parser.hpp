@@ -5,6 +5,7 @@
 #include <memory>
 #include <fstream>
 #include <vector>
+#include <string>
 // #include "Circus.hpp"
 // #include "IComponent.hpp"
 // #include "Factory.hpp"
@@ -18,6 +19,7 @@ namespace parser
         ~Parser();
         void LetsParse();
     private:
+        bool ParseChipset(std::vector<std::string> &stock);
         bool CheckMainError(std::vector<std::string> &stock);
         // Circus circus;
         std::string filename;
