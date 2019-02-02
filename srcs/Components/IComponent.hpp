@@ -10,32 +10,32 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace nts
 {
     enum  Tristate {
         UNDEFINED = (-true),
-        TRUE = true ,
+        TRUE = true,
         FALSE = false
     };
 
     class IComponent {
         public:
-            ~IComponent();
             virtual ~IComponent() = default;
 
             virtual nts::Tristate compute(std::size_t pin = 1) = 0;
             virtual void dump() const = 0;
             virtual void setLink(std::size_t, nts::IComponent &, std::size_t) = 0;
+            virtual bool check_input(std::size_t) = 0;
+            virtual bool check_output(std::size_t) = 0;
     };
 
-    class ISpecialComponent {
-        public:
-            ~ISpecialComponent();
-            virtual ~ISpecialComponent() = default;
-
-            virtual Tristate getValue() const noexcept = 0;
-    };
+    typedef struct links_s
+    {
+        nts::IComponent *cmp;
+        std::size_t output;
+    } link_t;
 };
 
 #endif /* !ICOMPONENT_HPP_ */

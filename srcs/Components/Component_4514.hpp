@@ -17,42 +17,17 @@ class Component_4514 : public nts::IComponent
         ~Component_4514();
 
         nts::Tristate compute(std::size_t pin = 1);
+        nts::Tristate operand(std::size_t, std::size_t);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
 
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
+        std::vector<nts::link_t> _list;
 };
-
-Component_4514::Component_4514(std::string name) :
-    _name(name)
-{
-}
-
-Component_4514::~Component_4514()
-{
-}
-
-std::string Component_4514::getName()
-{
-    return (_name);
-}
-
-nts::Tristate Component_4514::compute(std::size_t pin = 1)
-{
-
-}
-
-void Component_4514::dump() const
-{
-
-}
-
-void Component_4514::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-
-}
-
 
 #endif /* !COMPONENT_4514_HPP_ */

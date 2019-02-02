@@ -21,38 +21,12 @@ class Component_4040 : public nts::IComponent
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
 
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
+        std::vector<nts::link_t> _list;
 };
-
-Component_4040::Component_4040(std::string name) :
-    _name(name)
-{
-}
-
-Component_4040::~Component_4040()
-{
-}
-
-std::string Component_4040::getName()
-{
-    return (_name);
-}
-
-nts::Tristate Component_4040::compute(std::size_t pin = 1)
-{
-
-}
-
-void Component_4040::dump() const
-{
-
-}
-
-void Component_4040::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-
-}
-
 
 #endif /* !COMPONENT_4040_HPP_ */

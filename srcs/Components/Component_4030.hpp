@@ -16,43 +16,19 @@ class Component_4030 : public nts::IComponent
         Component_4030(std::string);
         ~Component_4030();
 
+        // Members
         nts::Tristate compute(std::size_t pin = 1);
+        nts::Tristate operand(std::size_t, std::size_t);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
 
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
+        std::vector<nts::link_t> _list;
 };
-
-Component_4030::Component_4030(std::string name) :
-    _name(name)
-{
-}
-
-Component_4030::~Component_4030()
-{
-}
-
-std::string Component_4030::getName()
-{
-    return (_name);
-}
-
-nts::Tristate Component_4030::compute(std::size_t pin = 1)
-{
-
-}
-
-void Component_4030::dump() const
-{
-
-}
-
-void Component_4030::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-
-}
-
 
 #endif /* !COMPONENT_4030_HPP_ */

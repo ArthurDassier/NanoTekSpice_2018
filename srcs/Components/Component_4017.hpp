@@ -16,43 +16,18 @@ class Component_4017 : public nts::IComponent
         Component_4017(std::string);
         ~Component_4017();
 
+        // Members
         nts::Tristate compute(std::size_t pin = 1);
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName();
 
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
         std::string _name;
+        std::vector<nts::link_t> _list;
 };
-
-Component_4017::Component_4017(std::string name) :
-    _name(name)
-{
-}
-
-Component_4017::~Component_4017()
-{
-}
-
-std::string Component_4017::getName()
-{
-    return (_name);
-}
-
-nts::Tristate Component_4017::compute(std::size_t pin = 1)
-{
-
-}
-
-void Component_4017::dump() const
-{
-
-}
-
-void Component_4017::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-
-}
-
 
 #endif /* !COMPONENT_4017_HPP_ */
