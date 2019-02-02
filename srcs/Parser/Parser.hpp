@@ -12,16 +12,24 @@
 
 namespace parser
 {
+    enum mode_e {
+        CHIPSET,
+        LINK,
+        UNKNOW
+    };
     class Parser
     {
     public:
-        Parser(std::string name/*, Circus my_circus*/);
+        Parser(std::string name/*, Circus my_circus, Factory my_factory*/);
         ~Parser();
         void LetsParse();
     private:
-        bool ParseChipset(std::vector<std::string> &stock);
+        bool ParseMode(std::vector<std::string> &stock);
+        bool ParseChipset(std::vector<std::string> &stock, std::string &it);
+        bool ParseLink(std::vector<std::string> &stock, std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
         // Circus circus;
+        // Factory factory;
         std::string filename;
     };
 }

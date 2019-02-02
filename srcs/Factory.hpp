@@ -28,6 +28,11 @@ public:
         ref["4514"] = &create4514;
         ref["4801"] = &create4801;
         ref["2716"] = &create2716;
+        ref["input"] = &create4081;
+        ref["true"] = &create4094;
+        ref["false"] = &create4514;
+        ref["output"] = &create4801;
+        ref["clock"] = &create2716;
     }
 
     std::unique_ptr<IComponent> createComponent(const std::string &type, const std::string &value)
@@ -111,6 +116,36 @@ public:
     {
         std::unique_ptr<Component_2716> comp(value);
         return comp;
+    }
+
+    std::unique_ptr<IComponent> createTrue(const std::string &value) const noexcept
+    {
+        std::unique_ptr<True> speComp(value);
+        return speComp;
+    }
+
+    std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept
+    {
+        std::unique_ptr<False> speComp(value);
+        return speComp;
+    }
+
+    std::unique_ptr<IComponent> createInput(const std::string &value) const noexcept
+    {
+        std::unique_ptr<Input> speComp(value);
+        return speComp;
+    }
+
+    std::unique_ptr<IComponent> createOutput(const std::string &value) const noexcept
+    {
+        std::unique_ptr<Output> speComp(value);
+        return speComp;
+    }
+
+    std::unique_ptr<IComponent> createClock(const std::string &value) const noexcept
+    {
+        std::unique_ptr<Clock> speComp(value);
+        return speComp;
     }
 private:
     std::unordered_map<ptr> ref;
