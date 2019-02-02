@@ -24,7 +24,7 @@ namespace parser
         ~Parser();
         void LetsParse();
     private:
-        bool ParseMode(std::vector<std::string> &stock);
+        bool ParseFile(std::vector<std::string> &stock);
         bool ParseChipset(std::vector<std::string> &stock, std::string &it);
         bool ParseLink(std::vector<std::string> &stock, std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
