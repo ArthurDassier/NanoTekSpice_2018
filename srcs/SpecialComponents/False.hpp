@@ -26,7 +26,6 @@ class False : public nts::IComponent {
 
     private:
         std::string _name;
-        std::vector<nts::link_t> _list;
 };
 
 #endif /* !FALSE_HPP_ */

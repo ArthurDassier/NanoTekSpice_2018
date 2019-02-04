@@ -37,7 +37,7 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
             return (nts::TRUE);
     }
     if (_list[in3].cmp->compute(_list[in3].output) == nts::TRUE)
-            return (nts::FALSE);
+        return (nts::FALSE);
     else
         return (nts::TRUE);
 }
@@ -71,7 +71,7 @@ bool Component_4008::check_input(std::size_t pin)
 
 bool Component_4008::check_output(std::size_t pin)
 {
-    if (pin == 10 || pin == 11 || pin == 12 || pin == 13)
+    if (pin == 10 || pin == 11 || pin == 12 || pin == 13 || pin == 14)
         return (true);
     return (false);
 }

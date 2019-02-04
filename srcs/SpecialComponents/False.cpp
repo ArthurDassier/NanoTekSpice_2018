@@ -42,10 +42,5 @@ bool False::check_output(std::size_t pin)
 
 void False::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
-    nts::link_t setter;
-
-    setter.cmp = &other;
-    setter.output = otherPin;
-    if (check_input(pin))
-        _list[pin] = setter;
+    return;
 }
