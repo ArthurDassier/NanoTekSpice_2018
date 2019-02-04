@@ -43,6 +43,9 @@ EXE	=	$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
+		$(SRC_DIR)/SpecialComponents/Input.cpp		\
+		$(SRC_DIR)/SpecialComponents/Output.cpp		\
+		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
 
 OBJ	=	$(EXE:.cpp=.o)
 
@@ -54,6 +57,7 @@ UT 	= 	$(UT_DIR)/Components/tests_Component_4001.cpp	\
 		$(UT_DIR)/Components/tests_Component_4071.cpp	\
 		$(UT_DIR)/Components/tests_Component_4081.cpp	\
 		$(UT_DIR)/Components/tests_Component_4503.cpp	\
+		$(UT_DIR)/Components/tests_SpecialComponents.cpp
 
 UT2	=	$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4008.cpp	\
@@ -71,6 +75,9 @@ UT2	=	$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
+		$(SRC_DIR)/SpecialComponents/Input.cpp		\
+		$(SRC_DIR)/SpecialComponents/Output.cpp		\
+		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
 
 RM	=	rm -f
 

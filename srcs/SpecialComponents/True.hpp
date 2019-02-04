@@ -26,7 +26,6 @@ class True : public nts::IComponent {
 
     private:
         std::string _name;
-        std::vector<nts::link_t> _list;
 };
 
 #endif /* !TRUE_HPP_ */

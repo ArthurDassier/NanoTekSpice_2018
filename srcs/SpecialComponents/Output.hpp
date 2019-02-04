@@ -26,48 +26,8 @@ class Output : public nts::IComponent {
 
     private:
         std::string _name;
-        std::unordered_map<std::size_t, nts::IComponent &> inputs;
-        std::unordered_map<std::size_t, std::size_t> output;
+        nts::IComponent *cmp;
+        std::size_t output;
 };
-
-Output::Output(std::string name) :
-    _name(name)
-{
-}
-
-Output::~Output()
-{
-}
-
-nts::Tristate Output::compute(std::size_t pin = 1)
-{
-    std::cout << inputs[1].compute(output[1]) << std::endl;
-    return (inputs[1].compute(output[1]));
-}
-
-void Output::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
-bool Output::check_input(std::size_t pin)
-{
-    if (pin == 1)
-        return (true);
-    return (false);
-}
-
-bool Output::check_output(std::size_t pin)
-{
-    return (false);
-}
-
-void Output::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    if (check_input(pin)) {
-        inputs[pin] = other;
-        output[pin] = otherPin;
-    }
-}
 
 #endif /* !OUTPUT_HPP_ */
