@@ -7,10 +7,10 @@
 
 #include "Component_4514.hpp"
 
-Component_4514::Component_4514(std::string name) :
-    _name(name),
-    _type("4514")
+Component_4514::Component_4514(std::string name)
 {
+    _name = name;
+    _type = "4514";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4514::Component_4514(std::string name) :
 
 Component_4514::~Component_4514()
 {
-}
-
-std::string Component_4514::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4514::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4514::operand(std::size_t in1, std::size_t in2)
@@ -89,15 +79,4 @@ bool Component_4514::check_output(std::size_t pin)
     if ((pin >= 4 && pin <= 11) || (pin >= 13 && pin <= 20))
         return (true);
     return (false);
-}
-
-void Component_4514::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
 }

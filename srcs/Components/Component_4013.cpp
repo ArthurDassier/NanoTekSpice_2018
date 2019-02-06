@@ -7,10 +7,10 @@
 
 #include "Component_4013.hpp"
 
-Component_4013::Component_4013(std::string name) :
-    _name(name),
-    _type("4013")
+Component_4013::Component_4013(std::string name)
 {
+    _name = name;
+    _type = "4013";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4013::Component_4013(std::string name) :
 
 Component_4013::~Component_4013()
 {
-}
-
-std::string Component_4013::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4013::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4013::compute(std::size_t pin)
@@ -56,15 +46,4 @@ bool Component_4013::check_output(std::size_t pin)
     if (pin == 1 || pin == 2 || pin == 12 || pin == 13)
         return (true);
     return (false);
-}
-
-void Component_4013::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
 }

@@ -7,10 +7,10 @@
 
 #include "Component_4801.hpp"
 
-Component_4801::Component_4801(std::string name) :
-    _name(name),
-    _type("4801")
+Component_4801::Component_4801(std::string name)
 {
+    _name = name;
+    _type = "4801";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4801::Component_4801(std::string name) :
 
 Component_4801::~Component_4801()
 {
-}
-
-std::string Component_4801::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4801::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4801::compute(std::size_t pin)
@@ -52,15 +42,3 @@ bool Component_4801::check_output(std::size_t pin)
 {
     return (false);
 }
-
-void Component_4801::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
-}
-

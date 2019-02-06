@@ -7,10 +7,10 @@
 
 #include "Component_4001.hpp"
 
-Component_4001::Component_4001(std::string name) :
-    _name(name),
-    _type("4001")
+Component_4001::Component_4001(std::string name)
 {
+    _name = name;
+    _type = "4001";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4001::Component_4001(std::string name) :
 
 Component_4001::~Component_4001()
 {
-}
-
-std::string Component_4001::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4001::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4001::operand(std::size_t in1, std::size_t in2)
@@ -80,16 +70,5 @@ bool Component_4001::check_output(std::size_t pin)
     if (pin == 3 || pin == 4 || pin == 10 || pin == 11)
         return (true);
     return (false);
-}
-
-void Component_4001::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
 }
 

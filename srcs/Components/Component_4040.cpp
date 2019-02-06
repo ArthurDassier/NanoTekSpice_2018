@@ -7,10 +7,10 @@
 
 #include "Component_4040.hpp"
 
-Component_4040::Component_4040(std::string name) :
-    _name(name),
-    _type("4040")
+Component_4040::Component_4040(std::string name)
 {
+    _name = name;
+    _type = "4040";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4040::Component_4040(std::string name) :
 
 Component_4040::~Component_4040()
 {
-}
-
-std::string Component_4040::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4040::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4040::compute(std::size_t pin)
@@ -64,14 +54,4 @@ bool Component_4040::check_output(std::size_t pin)
     return (false);
 }
 
-void Component_4040::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
-}
 

@@ -7,10 +7,10 @@
 
 #include "Component_4069.hpp"
 
-Component_4069::Component_4069(std::string name) :
-    _name(name),
-    _type("4069")
+Component_4069::Component_4069(std::string name)
 {
+    _name = name;
+    _type = "4069";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -21,16 +21,6 @@ Component_4069::Component_4069(std::string name) :
 
 Component_4069::~Component_4069()
 {
-}
-
-std::string Component_4069::getName() const
-{
-    return (_name);
-}
-
-std::string Component_4069::getType() const
-{
-    return (_type);
 }
 
 nts::Tristate Component_4069::compute(std::size_t pin)
@@ -72,13 +62,3 @@ bool Component_4069::check_output(std::size_t pin)
     return (false);
 }
 
-void Component_4069::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
-}
