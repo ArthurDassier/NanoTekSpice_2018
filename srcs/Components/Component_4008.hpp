@@ -30,6 +30,7 @@ class Component_4008 : public nts::IComponent
     private:
         const std::string _name;
         const std::string _type;
+        nts::Tristate _C;
         std::vector<nts::link_t> _list;
 };
 

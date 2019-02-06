@@ -40,14 +40,21 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
 {
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL || _list[in3].cmp == NULL)
         return (nts::UNDEFINED);
-    if (!(_list[in1].cmp->compute(_list[in1].output) == nts::TRUE
-    ^ _list[in2].cmp->compute(_list[in2].output) == nts::TRUE)) {
-        if (_list[in3].cmp->compute(_list[in3].output) == nts::FALSE)
+    _C = nts::FALSE;
+    nts::Tristate val1 = _list[in1].cmp->compute(_list[in1].output);
+    nts::Tristate val2 = _list[in2].cmp->compute(_list[in1].output);
+    nts::Tristate val3 = _list[in3].cmp->compute(_list[in1].output);
+    if (!(val1 == nts::TRUE ^ val2 == nts::TRUE)) {
+        if (val1 == nts::TRUE && val2 == nts::TRUE)
+            _C = nts::TRUE;
+        if (val3 == nts::FALSE)
             return (nts::FALSE);
         else
             return (nts::TRUE);
     }
-    if (_list[in3].cmp->compute(_list[in3].output) == nts::TRUE)
+    if (val3 == nts::TRUE)
+        _C = nts::TRUE;
+    if (val3 == nts::TRUE)
         return (nts::FALSE);
     else
         return (nts::TRUE);
@@ -65,6 +72,10 @@ nts::Tristate Component_4008::compute(std::size_t pin)
         return (operand(2, 3, 11));
     if (pin == 13)
         return (operand(1, 15, 12));
+    if (pin == 14) {
+        operand(1,15, 12);
+        return (_C);
+    }
     return (nts::UNDEFINED);
 }
 
