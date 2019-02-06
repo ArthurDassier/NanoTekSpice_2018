@@ -8,7 +8,8 @@
 #include "Component_2716.hpp"
 
 Component_2716::Component_2716(std::string name) :
-    _name(name)
+    _name(name),
+    _type("2716")
 {
 }
 
@@ -16,9 +17,14 @@ Component_2716::~Component_2716()
 {
 }
 
-std::string Component_2716::getName()
+std::string Component_2716::getName() const
 {
     return (_name);
+}
+
+std::string Component_2716::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_2716::compute(std::size_t pin)

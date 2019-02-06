@@ -9,7 +9,8 @@
 
 
 Component_4017::Component_4017(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4017")
 {
 }
 
@@ -17,9 +18,19 @@ Component_4017::~Component_4017()
 {
 }
 
+std::string Component_4017::getName() const
+{
+    return (_name);
+}
+
 nts::Tristate Component_4017::compute(std::size_t pin)
 {
     return (nts::UNDEFINED);
+}
+
+std::string Component_4017::getType() const
+{
+    return (_type);
 }
 
 void Component_4017::dump() const

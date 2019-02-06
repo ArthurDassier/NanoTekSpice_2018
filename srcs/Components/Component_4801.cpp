@@ -8,7 +8,8 @@
 #include "Component_4801.hpp"
 
 Component_4801::Component_4801(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4801")
 {
     nts::link_t setter;
 
@@ -20,6 +21,16 @@ Component_4801::Component_4801(std::string name) :
 
 Component_4801::~Component_4801()
 {
+}
+
+std::string Component_4801::getName() const
+{
+    return (_name);
+}
+
+std::string Component_4801::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_4801::compute(std::size_t pin)

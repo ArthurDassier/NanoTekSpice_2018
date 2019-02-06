@@ -23,27 +23,7 @@ class Circus {
         void lets_run();
 
     private:
-        std::vector<nts::IComponent &> my_circus;
+        std::vector<nts::IComponent *> my_circus;
 };
-
-Circus::Circus()
-{
-}
-
-Circus::~Circus()
-{
-}
-
-void Circus::addComponent(nts::IComponent &obj)
-{
-}
-
-void Circus::removeComponent(std::string name)
-{
-}
-
-void Circus::lets_run()
-{
-}
 
 #endif /* !CIRCUS_HPP_ */

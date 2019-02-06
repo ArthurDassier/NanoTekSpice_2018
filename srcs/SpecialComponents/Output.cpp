@@ -8,12 +8,23 @@
 #include "Output.hpp"
 
 Output::Output(std::string name) :
-    _name(name)
+    _name(name),
+    _type("Output")
 {
 }
 
 Output::~Output()
 {
+}
+
+std::string Output::getName() const
+{
+    return (_name);
+}
+
+std::string Output::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Output::compute(std::size_t pin)

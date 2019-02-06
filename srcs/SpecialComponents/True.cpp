@@ -8,12 +8,23 @@
 #include "True.hpp"
 
 True::True(std::string name) :
-    _name(name)
+    _name(name),
+    _type("True")
 {
 }
 
 True::~True()
 {
+}
+
+std::string True::getName() const
+{
+    return (_name);
+}
+
+std::string True::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate True::compute(std::size_t pin)

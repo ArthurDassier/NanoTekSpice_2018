@@ -8,7 +8,8 @@
 #include "Component_4013.hpp"
 
 Component_4013::Component_4013(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4013")
 {
     nts::link_t setter;
 
@@ -20,6 +21,16 @@ Component_4013::Component_4013(std::string name) :
 
 Component_4013::~Component_4013()
 {
+}
+
+std::string Component_4013::getName() const
+{
+    return (_name);
+}
+
+std::string Component_4013::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_4013::compute(std::size_t pin)

@@ -8,7 +8,8 @@
 #include "Component_4030.hpp"
 
 Component_4030::Component_4030(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4030")
 {
     nts::link_t setter;
 
@@ -20,6 +21,16 @@ Component_4030::Component_4030(std::string name) :
 
 Component_4030::~Component_4030()
 {
+}
+
+std::string Component_4030::getName() const
+{
+    return (_name);
+}
+
+std::string Component_4030::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_4030::operand(std::size_t in1, std::size_t in2)

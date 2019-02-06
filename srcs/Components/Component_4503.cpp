@@ -8,7 +8,8 @@
 #include "Component_4503.hpp"
 
 Component_4503::Component_4503(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4503")
 {
     nts::link_t setter;
 
@@ -20,6 +21,16 @@ Component_4503::Component_4503(std::string name) :
 
 Component_4503::~Component_4503()
 {
+}
+
+std::string Component_4503::getName() const
+{
+    return (_name);
+}
+
+std::string Component_4503::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_4503::operand(std::size_t in1, std::size_t in2)

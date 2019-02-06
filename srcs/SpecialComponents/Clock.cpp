@@ -8,13 +8,24 @@
 #include "Clock.hpp"
 
 Clock::Clock(std::string name) :
-    _name(name)
+    _name(name),
+    _type("Clock")
 {
     _input = nts::UNDEFINED;
 }
 
 Clock::~Clock()
 {
+}
+
+std::string Clock::getName() const
+{
+    return (_name);
+}
+
+std::string Clock::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Clock::compute(std::size_t pin)

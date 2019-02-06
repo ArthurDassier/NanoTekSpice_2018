@@ -8,13 +8,24 @@
 #include "Input.hpp"
 
 Input::Input(std::string name) :
-    _name(name)
+    _name(name),
+    _type("Input")
 {
     _input = nts::UNDEFINED;
 }
 
 Input::~Input()
 {
+}
+
+std::string Input::getName() const
+{
+    return (_name);
+}
+
+std::string Input::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Input::compute(std::size_t pin)

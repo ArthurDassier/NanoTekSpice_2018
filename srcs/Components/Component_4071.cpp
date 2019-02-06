@@ -9,7 +9,8 @@
 
 
 Component_4071::Component_4071(std::string name) :
-    _name(name)
+    _name(name),
+    _type("4071")
 {
     nts::link_t setter;
 
@@ -21,6 +22,16 @@ Component_4071::Component_4071(std::string name) :
 
 Component_4071::~Component_4071()
 {
+}
+
+std::string Component_4071::getName() const
+{
+    return (_name);
+}
+
+std::string Component_4071::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate Component_4071::operand(std::size_t in1, std::size_t in2)
