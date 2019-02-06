@@ -15,6 +15,30 @@
 #include "True.hpp"
 #include "False.hpp"
 
+Test(tests_Special_Components, test_check_construction)
+{
+    Clock cloc("test");
+    False fals("test");
+    True tru("test");
+    Input inpu("test");
+    Output outpu("test");
+
+    cr_assert_eq(cloc.getName(), "test");
+    cr_assert_eq(cloc.getType(), "Clock");
+
+    cr_assert_eq(fals.getName(), "test");
+    cr_assert_eq(fals.getType(), "False");
+
+    cr_assert_eq(tru.getName(), "test");
+    cr_assert_eq(tru.getType(), "True");
+
+    cr_assert_eq(inpu.getName(), "test");
+    cr_assert_eq(inpu.getType(), "Input");
+
+    cr_assert_eq(outpu.getName(), "test");
+    cr_assert_eq(outpu.getType(), "Output");
+}
+
 Test(tests_Special_Components, test_clock)
 {
     Clock test("test");

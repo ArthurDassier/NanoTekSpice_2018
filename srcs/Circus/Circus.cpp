@@ -33,7 +33,7 @@ void Circus::removeComponent(std::string name)
 void Circus::lets_run()
 {
     for(size_t i = 0; i < my_circus.size(); ++i) {
-        if (my_circus[i]->getType() == "output")
+        if (my_circus[i]->getType() == "Output")
             std::cout << my_circus[i]->compute()<< std::endl;
     }
 }
