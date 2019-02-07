@@ -11,6 +11,7 @@ Component_4008::Component_4008(std::string name)
 {
     _name = name;
     _type = "4008";
+    _C = nts::UNDEFINED;
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -32,8 +33,8 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
         return (nts::UNDEFINED);
     _C = nts::FALSE;
     nts::Tristate val1 = _list[in1].cmp->compute(_list[in1].output);
-    nts::Tristate val2 = _list[in2].cmp->compute(_list[in1].output);
-    nts::Tristate val3 = _list[in3].cmp->compute(_list[in1].output);
+    nts::Tristate val2 = _list[in2].cmp->compute(_list[in2].output);
+    nts::Tristate val3 = _list[in3].cmp->compute(_list[in3].output);
     if (!(val1 == nts::TRUE ^ val2 == nts::TRUE)) {
         if (val1 == nts::TRUE && val2 == nts::TRUE)
             _C = nts::TRUE;
@@ -54,16 +55,24 @@ nts::Tristate Component_4008::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (pin == 10)
+    if (pin == 10) {
+        std::cout << "1 : " << _C << std::endl;
         return (operand(6, 7, 9));
-    if (pin == 11)
+    }
+    if (pin == 11) {
+        std::cout << "2 : " << _C << std::endl;
         return (operand(4, 5, 10));
-    if (pin == 12)
+    }
+    if (pin == 12) {
+        std::cout << "3 : " << _C << std::endl;
         return (operand(2, 3, 11));
-    if (pin == 13)
+    }
+    if (pin == 13) {
+        std::cout << "4 : " << _C << std::endl;
         return (operand(1, 15, 12));
+    }
     if (pin == 14) {
-        operand(1,15, 12);
+        compute(13);
         return (_C);
     }
     return (nts::UNDEFINED);

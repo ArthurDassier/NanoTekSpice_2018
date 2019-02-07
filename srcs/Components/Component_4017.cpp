@@ -7,7 +7,6 @@
 
 #include "Component_4017.hpp"
 
-
 Component_4017::Component_4017(std::string name)
 {
     _name = name;

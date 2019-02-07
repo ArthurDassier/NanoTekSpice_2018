@@ -85,3 +85,65 @@ Test(tests_Component_4008, test_truth_table)
     test.setLink(5, tru, 1);
     cr_assert_eq(test.compute(11), nts::TRUE);
 }
+
+Test(tests_Component_4008, test_truth_C0)
+{
+    Component_4008 test("test");
+    True tru("tru");
+    False fals("fals");
+
+    test.setLink(6, fals, 1);
+    test.setLink(7, fals, 1);
+    test.setLink(9, fals, 1);
+    test.setLink(4, fals, 1);
+    test.setLink(5, fals, 1);
+    test.setLink(2, fals, 1);
+    test.setLink(3, fals, 1);
+    test.setLink(1, fals, 1);
+    test.setLink(15, fals, 1);
+    cr_assert_eq(test.compute(14), nts::FALSE);
+
+    test.setLink(6, tru, 1);
+    test.setLink(7, tru, 1);
+    test.setLink(9, tru, 1);
+    test.setLink(4, tru, 1);
+    test.setLink(5, tru, 1);
+    test.setLink(2, tru, 1);
+    test.setLink(3, tru, 1);
+    test.setLink(1, tru, 1);
+    test.setLink(15, tru, 1);
+    cr_assert_eq(test.compute(14), nts::TRUE);
+
+    test.setLink(6, tru, 1);
+    test.setLink(7, tru, 1);
+    test.setLink(9, fals, 1);
+    test.setLink(4, tru, 1);
+    test.setLink(5, tru, 1);
+    test.setLink(2, tru, 1);
+    test.setLink(3, tru, 1);
+    test.setLink(1, tru, 1);
+    test.setLink(15, tru, 1);
+    cr_assert_eq(test.compute(14), nts::TRUE);
+
+    test.setLink(6, fals, 1);
+    test.setLink(7, fals, 1);
+    test.setLink(9, tru, 1);
+    test.setLink(4, fals, 1);
+    test.setLink(5, fals, 1);
+    test.setLink(2, fals, 1);
+    test.setLink(3, fals, 1);
+    test.setLink(1, fals, 1);
+    test.setLink(15, fals, 1);
+    cr_assert_eq(test.compute(14), nts::FALSE);
+
+    test.setLink(6, tru, 1);
+    test.setLink(7, tru, 1);
+    test.setLink(9, tru, 1);
+    test.setLink(4, tru, 1);
+    test.setLink(5, tru, 1);
+    test.setLink(2, tru, 1);
+    test.setLink(3, tru, 1);
+    test.setLink(1, tru, 1);
+    test.setLink(15, fals, 1);
+    cr_assert_eq(test.compute(14), nts::FALSE);
+}
