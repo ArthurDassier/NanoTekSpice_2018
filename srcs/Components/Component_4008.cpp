@@ -29,26 +29,24 @@ Component_4008::~Component_4008()
 
 nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::size_t in3)
 {
+    nts::Tristate val3;
+
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL || _list[in3].cmp == NULL)
         return (nts::UNDEFINED);
-    _C = nts::FALSE;
     nts::Tristate val1 = _list[in1].cmp->compute(_list[in1].output);
     nts::Tristate val2 = _list[in2].cmp->compute(_list[in2].output);
-    nts::Tristate val3 = _list[in3].cmp->compute(_list[in3].output);
-    if (!(val1 == nts::TRUE ^ val2 == nts::TRUE)) {
-        if (val1 == nts::TRUE && val2 == nts::TRUE)
-            _C = nts::TRUE;
-        if (val3 == nts::FALSE)
-            return (nts::FALSE);
-        else
-            return (nts::TRUE);
-    }
-    if (val3 == nts::TRUE)
-        _C = nts::TRUE;
-    if (val3 == nts::TRUE)
-        return (nts::FALSE);
+    if (in3 == 9)
+        val3 = _list[in3].cmp->compute(_list[in3].output);
     else
+        val3 = _C;
+    if ((val1 == nts::TRUE && val2 == nts::TRUE)
+    || ((val1 == nts::TRUE ^ val2 == nts::TRUE) && val3 == nts::TRUE))
+        _C = nts::TRUE;
+    else
+        _C = nts::FALSE;
+    if ((val1 == nts::TRUE ^ val2 == nts::TRUE) ^ val3 == nts::TRUE)
         return (nts::TRUE);
+    return (nts::FALSE);
 }
 
 nts::Tristate Component_4008::compute(std::size_t pin)
@@ -56,19 +54,18 @@ nts::Tristate Component_4008::compute(std::size_t pin)
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
     if (pin == 10) {
-        std::cout << "1 : " << _C << std::endl;
         return (operand(6, 7, 9));
     }
     if (pin == 11) {
-        std::cout << "2 : " << _C << std::endl;
+        compute(10);
         return (operand(4, 5, 10));
     }
     if (pin == 12) {
-        std::cout << "3 : " << _C << std::endl;
+        compute(11);
         return (operand(2, 3, 11));
     }
     if (pin == 13) {
-        std::cout << "4 : " << _C << std::endl;
+        compute(12);
         return (operand(1, 15, 12));
     }
     if (pin == 14) {
