@@ -19,6 +19,7 @@ class Component : public nts::IComponent {
             void setLink(std::size_t, nts::IComponent &, std::size_t);
             std::string getName() const;
             std::string getType() const;
+            void dump() const;
 
         protected:
             std::string _name;

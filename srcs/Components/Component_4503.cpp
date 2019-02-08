@@ -54,11 +54,6 @@ nts::Tristate Component_4503::compute(std::size_t pin)
     return (nts::FALSE);
 }
 
-void Component_4503::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4503::check_input(std::size_t pin)
 {
     if (pin == 1 || pin == 2 || pin == 4 || pin == 6

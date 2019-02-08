@@ -28,11 +28,6 @@ nts::Tristate Component_4801::compute(std::size_t pin)
     return (nts::UNDEFINED);
 }
 
-void Component_4801::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4801::check_input(std::size_t pin)
 {
     return (false);

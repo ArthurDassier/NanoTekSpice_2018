@@ -29,11 +29,6 @@ nts::Tristate Component_4013::compute(std::size_t pin)
         return (nts::UNDEFINED);
 }
 
-void Component_4013::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4013::check_input(std::size_t pin)
 {
     if (pin >= 3 && pin <= 6 || pin >= 8 && pin <= 11)

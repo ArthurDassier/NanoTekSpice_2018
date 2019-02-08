@@ -35,11 +35,6 @@ nts::Tristate Component_4040::compute(std::size_t pin)
         return (_list[pin].cmp->compute(_list[pin].output));
 }
 
-void Component_4040::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4040::check_input(std::size_t pin)
 {
     if (pin == 10 || pin == 11)

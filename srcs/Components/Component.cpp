@@ -25,6 +25,11 @@ std::string Component::getType() const
     return (_type);
 }
 
+void Component::dump() const
+{
+    std::cout << _name << std::endl;
+}
+
 void Component::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
     nts::link_t setter;

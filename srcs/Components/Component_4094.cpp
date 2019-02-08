@@ -24,11 +24,6 @@ nts::Tristate Component_4094::compute(std::size_t pin)
     return (nts::UNDEFINED);
 }
 
-void Component_4094::dump() const
-{
-
-}
-
 bool Component_4094::check_input(std::size_t pin)
 {
     return (false);

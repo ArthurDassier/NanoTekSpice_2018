@@ -18,7 +18,6 @@ class Component_2716 : public Component
 
         // Member
         nts::Tristate compute(std::size_t pin = 1);
-        void dump() const;
 
         bool check_input(std::size_t);
         bool check_output(std::size_t);

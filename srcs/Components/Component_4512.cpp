@@ -28,11 +28,6 @@ nts::Tristate Component_4512::compute(std::size_t pin)
     return (nts::UNDEFINED);
 }
 
-void Component_4512::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4512::check_input(std::size_t pin)
 {
     return (false);
