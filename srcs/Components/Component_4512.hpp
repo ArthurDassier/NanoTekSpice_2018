@@ -1,20 +1,20 @@
 /*
 ** EPITECH PROJECT, 2019
-** Component_4069.h
+** Component_4512.h
 ** File description:
-** 4069
+** 4512
 */
 
-#ifndef COMPONENT_4069_HPP_
-	#define COMPONENT_4069_HPP_
+#ifndef COMPONENT_4512_HPP_
+	#define COMPONENT_4512_HPP_
 
 #include "Component.hpp"
 
-class Component_4069 : public Component
+class Component_4512 : public Component
 {
     public:
-        Component_4069(std::string);
-        ~Component_4069();
+        Component_4512(std::string);
+        ~Component_4512();
 
         // Members
         nts::Tristate compute(std::size_t pin = 1);
@@ -23,4 +23,4 @@ class Component_4069 : public Component
         bool check_output(std::size_t);
 };
 
-#endif /* !COMPONENT_4069_HPP_ */
+#endif /* !COMPONENT_4512_HPP_ */

@@ -12,11 +12,16 @@ before_install:
 
 jobs:
   include:
-    - stage: Unit Tests & Sonar
-      script:
-        - make tests_run
-        - gcov tests
-        - gcovr -r . -x --object-directory=. > report.xml
+  - stage: Unit Tests
+    script: 
+      - make tests_run
+  - stage: Unit Tests & Sonar
+    if: (NOT type IN (pull_request)) AND (branch = master)
+    script:
+      - make tests_run
+      - gcov tests
+      - gcovr -r . -x --object-directory=. > report.xml
+      - sonar-scanner -D sonar.host.url=$SONAR_HOST_URL -D sonar.login=$SONAR_TOKEN -X
 
 env:
  global:

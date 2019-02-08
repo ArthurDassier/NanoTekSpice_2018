@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2019
-** Input.hpp
+** Input.h
 ** File description:
 ** Input
 */
@@ -10,29 +10,27 @@
 
 #include "IComponent.hpp"
 
-class Input : public nts::ISpecialComponent {
+class Input : public nts::IComponent
+{
     public:
         Input(std::string);
         ~Input();
 
-        nts::Tristate getValue() const noexcept;
+        // Members
+        nts::Tristate compute(std::size_t pin = 1);
+        void dump() const;
+        void setLink(std::size_t, nts::IComponent &, std::size_t);
+        void setInput(nts::Tristate);
+        std::string getName() const;
+        std::string getType() const;
+
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
-        std::string _name;
-        nts::Tristate _value;
+        const std::string _name;
+        const std::string _type;
+        nts::Tristate _input;
 };
-
-Input::Input(std::string name) :
-    _name(name)
-{
-}
-
-Input::~Input()
-{
-}
-
-nts::Tristate Input::getValue() const noexcept
-{
-    return (_value);
-}
 
 #endif /* !INPUT_HPP_ */

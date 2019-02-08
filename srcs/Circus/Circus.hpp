@@ -11,7 +11,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <memory>
 #include "IComponent.hpp"
 
 class Circus {
@@ -19,32 +18,12 @@ class Circus {
         Circus();
         ~Circus();
 
-    void addComponent(nts::IComponent &obj);
-    void removeComponent(std::string name);
-    void run();
+        void addComponent(nts::IComponent &obj);
+        void removeComponent(std::string name);
+        void lets_run();
 
     private:
-        std::vector<std::unique_ptr<IComponent>> my_circus;
+        std::vector<nts::IComponent *> my_circus;
 };
-
-Circus::Circus()
-{
-}
-
-Circus::~Circus()
-{
-}
-
-void Circus::addComponent(nts::IComponent &obj)
-{
-}
-
-void Circus::removeComponent(std::string name)
-{
-}
-
-void Circus::run()
-{
-}
 
 #endif /* !CIRCUS_HPP_ */

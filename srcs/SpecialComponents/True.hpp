@@ -10,29 +10,24 @@
 
 #include "IComponent.hpp"
 
-class True : public nts::ISpecialComponent {
+class True : public nts::IComponent {
     public:
         True(std::string);
         ~True();
 
-        nts::Tristate getValue() const noexcept;
+        // Members
+        nts::Tristate compute(std::size_t);
+        void dump() const;
+        void setLink(std::size_t, nts::IComponent &, std::size_t);
+        std::string getName() const;
+        std::string getType() const;
+
+        bool check_input(std::size_t);
+        bool check_output(std::size_t);
+
     private:
-        std::string _name;
-        nts::Tristate _value;
+        const std::string _name;
+        const std::string _type;
 };
-
-True::True(std::string name) :
-    _name(name)
-{
-}
-
-True::~True()
-{
-}
-
-nts::Tristate True::getValue() const noexcept
-{
-    return (_value);
-}
 
 #endif /* !TRUE_HPP_ */
