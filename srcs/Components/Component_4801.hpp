@@ -8,25 +8,18 @@
 #ifndef COMPONENT_4801_HPP_
 	#define COMPONENT_4801_HPP_
 
-#include "IComponent.hpp"
+#include "Component.hpp"
 
-class Component_4801 : public nts::IComponent
+class Component_4801 : public Component
 {
     public:
         Component_4801(std::string name);
         ~Component_4801();
 
         nts::Tristate compute(std::size_t pin = 1);
-        void dump() const;
-        void setLink(std::size_t, nts::IComponent &, std::size_t);
-        std::string getName();
 
         bool check_input(std::size_t);
         bool check_output(std::size_t);
-
-    private:
-        std::string _name;
-        std::vector<nts::link_t> _list;
 };
 
 #endif /* !COMPONENT_4801_HPP_ */

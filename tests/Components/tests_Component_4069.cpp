@@ -13,6 +13,14 @@
 #include "True.hpp"
 #include "False.hpp"
 
+Test(tests_Component_4069, test_check_construction)
+{
+    Component_4069 test("test");
+
+    cr_assert_eq(test.getName(), "test");
+    cr_assert_eq(test.getType(), "4069");
+}
+
 Test(tests_Component_4069, test_check_input_return_true)
 {
     Component_4069 test("test");

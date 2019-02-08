@@ -8,12 +8,23 @@
 #include "False.hpp"
 
 False::False(std::string name) :
-    _name(name)
+    _name(name),
+    _type("False")
 {
 }
 
 False::~False()
 {
+}
+
+std::string False::getName() const
+{
+    return (_name);
+}
+
+std::string False::getType() const
+{
+    return (_type);
 }
 
 nts::Tristate False::compute(std::size_t pin)

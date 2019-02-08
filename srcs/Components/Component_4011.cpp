@@ -7,9 +7,10 @@
 
 #include "Component_4011.hpp"
 
-Component_4011::Component_4011(std::string name) :
-    _name(name)
+Component_4011::Component_4011(std::string name)
 {
+    _name = name;
+    _type = "4011";
     nts::link_t setter;
 
     setter.cmp = NULL;
@@ -47,11 +48,6 @@ nts::Tristate Component_4011::compute(std::size_t pin)
     return (nts::UNDEFINED);
 }
 
-void Component_4011::dump() const
-{
-    std::cout << _name << std::endl;
-}
-
 bool Component_4011::check_input(std::size_t pin)
 {
     if (pin == 1 || pin == 2 || pin == 5 || pin == 6 || pin == 8
@@ -65,15 +61,4 @@ bool Component_4011::check_output(std::size_t pin)
     if (pin == 3 || pin == 4 || pin == 10 || pin == 11)
         return (true);
     return (false);
-}
-
-void Component_4011::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
-{
-    nts::link_t setter;
-
-    if (check_input(pin)) {
-        setter.cmp = &other;
-        setter.output = otherPin;
-        _list[pin] = setter;
-    }
 }

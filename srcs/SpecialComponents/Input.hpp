@@ -21,13 +21,15 @@ class Input : public nts::IComponent
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         void setInput(nts::Tristate);
-        std::string getName();
+        std::string getName() const;
+        std::string getType() const;
 
         bool check_input(std::size_t);
         bool check_output(std::size_t);
 
     private:
-        std::string _name;
+        const std::string _name;
+        const std::string _type;
         nts::Tristate _input;
 };
 
