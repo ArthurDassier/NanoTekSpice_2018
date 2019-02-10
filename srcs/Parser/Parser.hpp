@@ -6,9 +6,14 @@
 #include <fstream>
 #include <vector>
 #include <string>
-// #include "Circus.hpp"
-// #include "IComponent.hpp"
-// #include "Factory.hpp"
+#include "Circus.hpp"
+#include "Component.hpp"
+#include "Clock.hpp"
+#include "Input.hpp"
+#include "False.hpp"
+#include "Output.hpp"
+#include "True.hpp"
+#include "Factory.hpp"
 
 namespace parser
 {
@@ -20,7 +25,7 @@ namespace parser
     class Parser
     {
     public:
-        Parser(std::string name/*, Circus my_circus, Factory my_factory*/);
+        Parser(std::string name, Circus &my_circus, Factory &my_factory);
         ~Parser();
         void LetsParse();
     private:
@@ -28,8 +33,8 @@ namespace parser
         bool ParseChipset(std::vector<std::string> &stock, std::string &it);
         bool ParseLink(std::vector<std::string> &stock, std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
-        // Circus circus;
-        // Factory factory;
+        Circus &circus;
+        Factory &factory;
         std::string filename;
     };
 }

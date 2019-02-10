@@ -25,7 +25,7 @@ Component_4514::~Component_4514()
 
 nts::Tristate Component_4514::operand(std::size_t in1, std::size_t in2)
 {
-//
+    return nts::UNDEFINED;
 }
 
 nts::Tristate Component_4514::compute(std::size_t pin)

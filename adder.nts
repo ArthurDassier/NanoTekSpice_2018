@@ -18,7 +18,7 @@ output		o0
 output		o1
 output		o2
 output		o3
-g
+
 output		cout
 
 4008		adder

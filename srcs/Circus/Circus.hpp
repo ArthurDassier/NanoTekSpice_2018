@@ -20,6 +20,7 @@ class Circus {
 
         void addComponent(nts::IComponent &obj);
         void removeComponent(std::string name);
+        std::vector<nts::IComponent *> getCircus() const;
         void lets_run();
 
     private:

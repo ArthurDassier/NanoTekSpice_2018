@@ -2,7 +2,7 @@
 
 namespace parser
 {
-    Parser::Parser(std::string name/*, Circus my_circus, Factory my_factory*/) : filename(name)/*, circus(my_circus), factory(my_factory)*/
+    Parser::Parser(std::string name, Circus &my_circus, Factory &my_factory) : filename(name), circus(my_circus), factory(my_factory)
     {
     }
 
@@ -29,8 +29,8 @@ namespace parser
 
     bool Parser::ParseChipset(std::vector<std::string> &stock, std::string &it)
     {
-        std::string SpeComp[5] = {"input", "clock", "false", "true", "output"};
-        std::string comps[] = {"4001", "4008", "4013", "4011", "4017", "4030"
+        const std::string SpeComp[5] = {"input", "clock", "false", "true", "output"};
+        const std::string comps[] = {"4001", "4008", "4013", "4011", "4017", "4030"
                                 , "4040", "4069", "4071", "4081", "4094", "4514"
                                 , "4801", "2716", "4004"};
         bool check_comp = false;
@@ -38,20 +38,28 @@ namespace parser
         std::string type;
         size_t ret;
 
-        for (auto &it2 : SpeComp) {
+        for (auto &it2 : SpeComp) { /*Find Special Components*/
             if (it.find(it2) != std::string::npos) {
                 tmp = it.substr(it2.size());
                 if ((ret = tmp.find_first_not_of(' ')) != std::string::npos)
                     tmp = tmp.substr(ret);
                 if ((ret = tmp.find_first_not_of('\t')) != std::string::npos)
                     tmp = tmp.substr(ret);
-                // factory(it2, tmp);
-                // !\\ ajouter au circus vector
-                std::cout << it2 << " find ! " << tmp << std::endl;
+                circus.addComponent(*(factory.createComponent(it2, tmp)));
+                // std::cout << it2 << " find ! " << tmp << std::endl;
+                try {
+                    if (!(tmp.find(' ') == std::string::npos
+                        && tmp.find('\t') == std::string::npos))
+                        throw "this special component doesn't have name !!";
+                }
+                catch (const char* &main_error) {
+                    std::cerr << "Exception: " << main_error << std::endl;
+                    exit(-1);
+                }
                 return true;
             }
         }
-        if (std::isdigit(it[0])) {
+        if (std::isdigit(it[0])) { /*Find Components*/
             if ((ret = it.find_first_of(' ')) != std::string::npos)
                 tmp = it.substr(0, ret);
             if ((ret = it.find_first_of('\t')) != std::string::npos)
@@ -63,16 +71,35 @@ namespace parser
             }
             if (!check_comp)
                 throw std::invalid_argument("This component: '" + type + "' doesn't exist");
-            std::cout << "compenant find ! " << type << std::endl;
+            // std::cout << "compenant find ! " << type << std::endl;
             tmp = it.substr(type.size());
             if ((ret = tmp.find_first_not_of(' ')) != std::string::npos)
                 tmp = tmp.substr(ret);
             if ((ret = tmp.find_first_not_of('\t')) != std::string::npos)
                 tmp = tmp.substr(ret);
-            std::cout << "its name is ! " << tmp << std::endl;
-            // check if already exist a comp with the same name
-            // factory(type, tmp);
-            // !\\ ajouter au circus vector
+            try {
+                if (!(tmp.find(' ') == std::string::npos
+                    && tmp.find('\t') == std::string::npos))
+                    throw "this component doesn't have name !!";
+            }
+            catch (const char* &main_error) {
+                std::cerr << "Exception: " << main_error << std::endl;
+                exit(-1);
+            }
+            // std::cout << "its name is ! " << tmp << std::endl;
+            std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
+
+            for (auto &it : tmp_circus) {
+                try {
+                    if (it->getName() == tmp)
+                        throw "this component already exist";
+                }
+                catch (const char* &main_error) {
+                    std::cerr << "Exception: " << main_error << std::endl;
+                    exit(-1);
+                }
+            }
+            circus.addComponent(*(factory.createComponent(type, tmp)));
             return true;
         }
         if (it != "")
@@ -89,6 +116,8 @@ namespace parser
         std::string fem;
         std::string pin_fem;
 
+        if (it.size() == 0)
+            return true;
         if ((ret = it.find(":")) != std::string::npos) {
             male = it.substr(0, ret);
             if ((ret2 = it.find_first_of(" ")) != std::string::npos)
@@ -102,8 +131,19 @@ namespace parser
             fem = it.substr(ret2 + 1, ret - (ret2 + 1));
             pin_fem = it.substr(ret + 1);
         }
-        std::cout << "male " << male << "||" << " pin_male " << pin_male << "||" << " fem : " << fem << "||" << " pin_fem : " << pin_fem << std::endl;
-        return true;
+        std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
+
+        for (auto &it : tmp_circus) {
+            if (it->getName() == male) {
+                for (auto &it2 : tmp_circus) {
+                    if (it2->getName() == fem) {
+                        it->setLink(static_cast<size_t>(std::stoi(pin_male)), *it2, static_cast<size_t>(std::stoi(pin_fem)));
+                        return (true);
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     bool Parser::ParseFile(std::vector<std::string> &stock)
@@ -124,15 +164,21 @@ namespace parser
             if (mode == CHIPSET) {
                 try {
                     if (!ParseChipset(stock, it))
-                        std::cerr << "Invalid chipset" << std::endl;
-                } catch(const std::invalid_argument &error_chipset) {
+                        throw "Invalid chipset";
+                } catch (const std::invalid_argument &error_chipset) {
                     std::cerr << error_chipset.what() << std::endl;
                     exit(-1);
                 }
             }
             else { // mode == LINK
-                if (!ParseLink(stock, it))
-                    std::cerr << "Invalid link" << std::endl;
+                try {
+                    if (!ParseLink(stock, it))
+                        throw "Invalid link";
+                }
+                catch (const std::invalid_argument &error_chipset) {
+                    std::cerr << error_chipset.what() << std::endl;
+                    exit(-1);
+                }
             }
         }
         return true;

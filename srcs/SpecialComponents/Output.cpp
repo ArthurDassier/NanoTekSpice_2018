@@ -56,4 +56,3 @@ void Output::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherP
         output = otherPin;
     }
 }
-

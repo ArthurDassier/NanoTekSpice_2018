@@ -7,7 +7,7 @@
 
 NAME	=	nano
 
-CXX	=	g++ -std=c++11
+CXX	=	g++ -std=c++11 -g3
 
 MAKE	=	/usr/bin/make
 
@@ -38,15 +38,20 @@ EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4069.cpp	\
 		$(SRC_DIR)/Components/Component_4071.cpp	\
 		$(SRC_DIR)/Components/Component_4081.cpp	\
+		$(SRC_DIR)/Components/Component_4801.cpp	\
+		$(SRC_DIR)/Components/Component_2716.cpp	\
 		$(SRC_DIR)/Components/Component_4094.cpp	\
 		$(SRC_DIR)/Components/Component_4503.cpp	\
 		$(SRC_DIR)/Components/Component_4512.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
+		$(SRC_DIR)/Circus/Circus.cpp	\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
+		$(SRC_DIR)/Parser/Parser.cpp				\
+		$(SRC_DIR)/main.cpp				\
 
 OBJ	=	$(EXE:.cpp=.o)
 
@@ -85,13 +90,13 @@ RM	=	rm -f
 
 CXXFLAGS	+=	-Wall -Wextra
 
-CPPFLAGS=	-I./includes/ -I./srcs/Components -I./srcs/SpecialComponents
+# CPPFLAGS=	-I./includes/ -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser
 
 LDFLAGS	=
 
 UT_FLAGS=	-lcriterion --coverage
 
-INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents
+INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/
 
 
 all:		$(NAME)
