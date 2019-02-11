@@ -9,7 +9,7 @@
 
 Clock::Clock(std::string name) :
     _name(name),
-    _type("Clock")
+    _type("clock")
 {
     _input = nts::UNDEFINED;
 }

@@ -9,7 +9,7 @@
 
 Output::Output(std::string name) :
     _name(name),
-    _type("Output")
+    _type("output")
 {
 }
 
