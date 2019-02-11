@@ -221,7 +221,6 @@ public:
         static std::vector<std::shared_ptr<Component_2716>> sp;
 
         sp.push_back(std::make_shared<Component_2716>(value));
-        std::cout << sp.end()->get()->getName() << std::endl;
         return sp[sp.size() - 1].get();
     }
 

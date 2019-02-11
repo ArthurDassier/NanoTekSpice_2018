@@ -10,8 +10,6 @@ int main(int ac, char **av)
     parser::Parser parser(av[1], circus, factory);
     parser.LetsParse();
     std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
-    for (auto &it : tmp_circus)
-        it->dump();
     circus.lets_run();
     return (0);
 }

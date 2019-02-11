@@ -28,11 +28,11 @@ namespace parser
         Parser(std::string name, Circus &my_circus, Factory &my_factory);
         ~Parser();
         void LetsParse();
-    private:
         bool ParseFile(std::vector<std::string> &stock);
         bool ParseChipset(std::vector<std::string> &stock, std::string &it);
         bool ParseLink(std::vector<std::string> &stock, std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
+    private:
         Circus &circus;
         Factory &factory;
         std::string filename;

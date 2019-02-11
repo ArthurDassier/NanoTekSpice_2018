@@ -29,7 +29,6 @@ void Circus::removeComponent(std::string name)
 {
     for(auto it = my_circus.begin(); it != my_circus.end(); ++it) {
         if ((*it)->getName() == name) {
-            std::cout << "ici" << std::endl;
             it = my_circus.erase(it);
             break;
         }
@@ -38,7 +37,6 @@ void Circus::removeComponent(std::string name)
 
 void Circus::lets_run()
 {
-    std::cout << "Start Run !" << std::endl;
     for(auto &it : my_circus) {
         if (it->getType() == "output") {
             std::cout << it->getName() << std::endl;
