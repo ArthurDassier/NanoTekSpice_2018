@@ -9,7 +9,8 @@
 
 Output::Output(std::string name) :
     _name(name),
-    _type("Output")
+    _type("Output"),
+    cmp(nullptr)
 {
 }
 
@@ -25,6 +26,13 @@ std::string Output::getName() const
 std::string Output::getType() const
 {
     return (_type);
+}
+
+bool Output::getComponent() const
+{
+    if (cmp)
+        return (true);
+    return (false);
 }
 
 nts::Tristate Output::compute(std::size_t pin)
@@ -56,4 +64,3 @@ void Output::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherP
         output = otherPin;
     }
 }
-

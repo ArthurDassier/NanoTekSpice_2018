@@ -20,6 +20,11 @@ void Circus::addComponent(nts::IComponent &obj)
     my_circus.push_back(&obj);
 }
 
+std::vector<nts::IComponent *> Circus::getCircus() const
+{
+    return (my_circus);
+}
+
 void Circus::removeComponent(std::string name)
 {
     for(size_t i = 0; i < my_circus.size(); ++i) {
@@ -32,9 +37,11 @@ void Circus::removeComponent(std::string name)
 
 void Circus::lets_run()
 {
+    std::cout << "Start Run !" << std::endl;
     for(size_t i = 0; i < my_circus.size(); ++i) {
-        if (my_circus[i]->getType() == "Output")
+        if (my_circus[i]->getType() == "Output") {
+            std::cout << my_circus[i]->getName() << std::endl;
             std::cout << my_circus[i]->compute()<< std::endl;
+        }
     }
 }
-
