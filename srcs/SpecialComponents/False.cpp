@@ -9,7 +9,7 @@
 
 False::False(std::string name) :
     _name(name),
-    _type("False")
+    _type("false")
 {
 }
 
