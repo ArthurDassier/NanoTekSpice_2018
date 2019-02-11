@@ -44,14 +44,14 @@ EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4503.cpp	\
 		$(SRC_DIR)/Components/Component_4512.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
-		$(SRC_DIR)/Circus/Circus.cpp				\
-		$(SRC_DIR)/SpecialComponents/True.cpp		\
+		$(SRC_DIR)/Circus/Circus.cpp				      \
+		$(SRC_DIR)/SpecialComponents/True.cpp		  \
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
-		$(SRC_DIR)/Parser/Parser.cpp				\
-		$(SRC_DIR)/main.cpp							\
+		$(SRC_DIR)/Parser/Parser.cpp				      \
+		$(SRC_DIR)/main.cpp				                \
 
 OBJ	=	$(EXE:.cpp=.o)
 
@@ -91,8 +91,6 @@ UT2	=	$(SRC_DIR)/Components/Component.cpp			\
 RM	=	rm -f
 
 CXXFLAGS	+=	-Wall -Wextra
-
-LDFLAGS	=
 
 UT_FLAGS=	-lcriterion --coverage
 
