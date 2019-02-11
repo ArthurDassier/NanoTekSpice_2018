@@ -44,14 +44,14 @@ EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4503.cpp	\
 		$(SRC_DIR)/Components/Component_4512.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
-		$(SRC_DIR)/Circus/Circus.cpp	\
+		$(SRC_DIR)/Circus/Circus.cpp				\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
 		$(SRC_DIR)/Parser/Parser.cpp				\
-		$(SRC_DIR)/main.cpp				\
+		$(SRC_DIR)/main.cpp							\
 
 OBJ	=	$(EXE:.cpp=.o)
 
@@ -63,11 +63,15 @@ UT 	= 	$(UT_DIR)/Components/tests_Component_4001.cpp	\
 		$(UT_DIR)/Components/tests_Component_4071.cpp	\
 		$(UT_DIR)/Components/tests_Component_4081.cpp	\
 		$(UT_DIR)/Components/tests_Component_4503.cpp	\
-		$(UT_DIR)/Components/tests_SpecialComponents.cpp
+		$(UT_DIR)/Components/tests_SpecialComponents.cpp\
+		$(UT_DIR)/Parser/tests_Parser.cpp				\
+		$(UT_DIR)/Factory/tests_Factory.cpp				\
 
 UT2	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4001.cpp	\
 		$(SRC_DIR)/Components/Component_4008.cpp	\
+		$(SRC_DIR)/Components/Component_4801.cpp	\
+		$(SRC_DIR)/Components/Component_2716.cpp	\
 		$(SRC_DIR)/Components/Component_4011.cpp	\
 		$(SRC_DIR)/Components/Component_4013.cpp	\
 		$(SRC_DIR)/Components/Component_4017.cpp	\
@@ -85,12 +89,12 @@ UT2	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
+		$(SRC_DIR)/Parser/Parser.cpp				\
+		$(SRC_DIR)/Circus/Circus.cpp				\
 
 RM	=	rm -f
 
 CXXFLAGS	+=	-Wall -Wextra
-
-# CPPFLAGS=	-I./includes/ -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser
 
 LDFLAGS	=
 
