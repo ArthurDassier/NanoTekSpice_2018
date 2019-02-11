@@ -9,7 +9,7 @@
 
 Input::Input(std::string name) :
     _name(name),
-    _type("Input")
+    _type("input")
 {
     _input = nts::UNDEFINED;
 }

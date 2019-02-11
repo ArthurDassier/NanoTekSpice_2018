@@ -24,19 +24,22 @@ Test(tests_Special_Components, test_check_construction)
     Output outpu("test");
 
     cr_assert_eq(cloc.getName(), "test");
-    cr_assert_eq(cloc.getType(), "Clock");
+    cr_assert_eq(cloc.getType(), "clock");
 
     cr_assert_eq(fals.getName(), "test");
-    cr_assert_eq(fals.getType(), "False");
+    cr_assert_eq(fals.getType(), "false");
 
     cr_assert_eq(tru.getName(), "test");
-    cr_assert_eq(tru.getType(), "True");
+    cr_assert_eq(tru.getType(), "true");
 
     cr_assert_eq(inpu.getName(), "test");
-    cr_assert_eq(inpu.getType(), "Input");
+    cr_assert_eq(inpu.getType(), "input");
 
     cr_assert_eq(outpu.getName(), "test");
     cr_assert_eq(outpu.getType(), "Output");
+    cr_assert_eq(outpu.getComponent(), false);
+    outpu.setLink(1, fals, 1);
+    cr_assert_eq(outpu.getComponent(), true);
 }
 
 Test(tests_Special_Components, test_clock)
