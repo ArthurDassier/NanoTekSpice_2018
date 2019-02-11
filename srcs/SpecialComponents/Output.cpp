@@ -28,9 +28,11 @@ std::string Output::getType() const
     return (_type);
 }
 
-nts::IComponent *Output::getComponent() const
+bool Output::getComponent() const
 {
-    return (cmp);
+    if (cmp)
+        return (true);
+    return (false);
 }
 
 nts::Tristate Output::compute(std::size_t pin)

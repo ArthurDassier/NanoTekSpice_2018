@@ -21,7 +21,7 @@ class Output : public nts::IComponent {
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         std::string getName() const;
         std::string getType() const;
-        nts::IComponent *getComponent() const;
+        bool getComponent() const;
 
         bool check_input(std::size_t);
         bool check_output(std::size_t);
