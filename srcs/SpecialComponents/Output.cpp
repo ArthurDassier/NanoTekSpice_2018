@@ -9,7 +9,8 @@
 
 Output::Output(std::string name) :
     _name(name),
-    _type("Output")
+    _type("Output"),
+    cmp(nullptr)
 {
 }
 
@@ -25,6 +26,11 @@ std::string Output::getName() const
 std::string Output::getType() const
 {
     return (_type);
+}
+
+nts::IComponent *Output::getComponent() const
+{
+    return (cmp);
 }
 
 nts::Tristate Output::compute(std::size_t pin)
