@@ -17,7 +17,7 @@ Test(tests_parser, test_basic_and)
 {
     Circus circus;
     Factory factory;
-    parser::Parser parser("and.nts", circus, factory);
+    parser::Parser parser("files/and.nts", circus, factory);
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }
@@ -26,7 +26,7 @@ Test(tests_parser, test_basic_nor)
 {
     Circus circus;
     Factory factory;
-    parser::Parser parser("nor.nts", circus, factory);
+    parser::Parser parser("files/nor.nts", circus, factory);
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }
@@ -35,7 +35,16 @@ Test(tests_parser, test_basic_xor)
 {
     Circus circus;
     Factory factory;
-    parser::Parser parser("xor.nts", circus, factory);
+    parser::Parser parser("files/xor.nts", circus, factory);
+    parser.LetsParse();
+    cr_assert_eq("OK", "OK");
+}
+
+Test(tests_parser, test_basic_adder)
+{
+    Circus circus;
+    Factory factory;
+    parser::Parser parser("files/adder.nts", circus, factory);
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }

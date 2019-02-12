@@ -45,6 +45,7 @@ EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4512.cpp	\
 		$(SRC_DIR)/Components/Component_4514.cpp	\
 		$(SRC_DIR)/Circus/Circus.cpp				\
+		$(SRC_DIR)/CLI/CLI.cpp						\
 		$(SRC_DIR)/SpecialComponents/True.cpp		\
 		$(SRC_DIR)/SpecialComponents/False.cpp		\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
@@ -99,7 +100,7 @@ CXXFLAGS	+=	-Wall -Wextra
 
 UT_FLAGS=	-lcriterion --coverage
 
-INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/
+INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
 
 all:		$(NAME)

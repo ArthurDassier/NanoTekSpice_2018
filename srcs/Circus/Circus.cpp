@@ -35,12 +35,18 @@ void Circus::removeComponent(std::string name)
     }
 }
 
+void Circus::display()
+{
+    for (auto &it : results)
+        std::cout << it << std::endl;
+}
+
 void Circus::lets_run()
 {
-    for(auto &it : my_circus) {
+    results.clear();
+    for (auto &it : my_circus) {
         if (it->getType() == "output") {
-            std::cout << it->getName() << std::endl;
-            std::cout << it->compute()<< std::endl;
+            results.push_back(std::string(it->getName()) + std::string("=") + std::to_string(it->compute()));
         }
     }
 }
