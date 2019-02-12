@@ -22,9 +22,11 @@ class Circus {
         void removeComponent(std::string name);
         std::vector<nts::IComponent *> getCircus() const;
         void lets_run();
+        void display();
 
     private:
         std::vector<nts::IComponent *> my_circus;
+        std::vector<std::string> results;
 };
 
 #endif /* !CIRCUS_HPP_ */

@@ -99,7 +99,7 @@ CXXFLAGS	+=	-Wall -Wextra
 
 UT_FLAGS=	-lcriterion --coverage
 
-INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/
+INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
 
 all:		$(NAME)

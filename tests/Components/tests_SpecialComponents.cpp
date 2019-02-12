@@ -36,7 +36,7 @@ Test(tests_Special_Components, test_check_construction)
     cr_assert_eq(inpu.getType(), "input");
 
     cr_assert_eq(outpu.getName(), "test");
-    cr_assert_eq(outpu.getType(), "Output");
+    cr_assert_eq(outpu.getType(), "output");
     cr_assert_eq(outpu.getComponent(), false);
     outpu.setLink(1, fals, 1);
     cr_assert_eq(outpu.getComponent(), true);

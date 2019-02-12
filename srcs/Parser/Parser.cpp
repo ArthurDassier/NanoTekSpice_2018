@@ -101,6 +101,7 @@ namespace parser
                 }
             }
             circus.addComponent(*(factory.createComponent(type, tmp)));
+            // std::cout << "add component" << std::endl;
             return true;
         }
         if (it != "")
@@ -132,12 +133,13 @@ namespace parser
             fem = it.substr(ret2 + 1, ret - (ret2 + 1));
             pin_fem = it.substr(ret + 1);
         }
+        // std::cout << "fem: " << fem << " pin_fem: " << pin_fem << " male: " << male << " pin_male: " << pin_male << std::endl;
         std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
         for (auto &it : tmp_circus) {
             if (it->getName() == male) {
                 for (auto &it2 : tmp_circus) {
                     if (it2->getName() == fem) {
-                        if (it->getType() == "Input" || it->getType() == "True" || it->getType() == "False" || it->getType() == "Clock") {
+                        if (it->getType() == "input" || it->getType() == "true" || it->getType() == "false" || it->getType() == "clock") {
                             it2->setLink(static_cast<size_t>(std::stoi(pin_fem)), *it, static_cast<size_t>(std::stoi(pin_male)));
                             return (true);
                         }
