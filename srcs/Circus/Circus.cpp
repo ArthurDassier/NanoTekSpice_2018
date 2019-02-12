@@ -45,8 +45,7 @@ void Circus::lets_run()
 {
     results.clear();
     for (auto &it : my_circus) {
-        if (it->getType() == "output") {
+        if (it->getType() == "output")
             results.push_back(std::string(it->getName()) + std::string("=") + std::to_string(it->compute()));
-        }
     }
 }

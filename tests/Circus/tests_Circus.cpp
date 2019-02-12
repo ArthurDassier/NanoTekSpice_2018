@@ -12,7 +12,6 @@
 #include "True.hpp"
 #include "False.hpp"
 
-
 Test(tests_Circus, test_getCircus)
 {
     Circus test;

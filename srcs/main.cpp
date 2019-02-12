@@ -6,8 +6,8 @@
 
 int main(int ac, char **av)
 {
-    if (ac < 1)
-        return -1;
+    if (ac <= 1)
+        return (84);
     Circus circus;
     Factory factory;
     CLI my_CLI(circus);
@@ -21,7 +21,7 @@ int main(int ac, char **av)
     if (ac > 1) {
         for (int i = 2; i < ac; i++) {
             if ((tmp = std::string(av[i]).find("=")) == std::string::npos)
-                return -1;
+                return (84);
             name_input = std::string(av[i]).substr(0, tmp);
             value_input = std::string(av[i]).substr(tmp + 1, std::string(av[i]).size() - tmp);
             for (auto &it : tmp_circus) {
@@ -30,6 +30,8 @@ int main(int ac, char **av)
             }
         }
     }
+    circus.lets_run();
+    circus.display();
     my_CLI.start();
     return (0);
 }

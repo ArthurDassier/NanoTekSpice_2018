@@ -9,23 +9,9 @@ NAME	=	nano
 
 CXX	=	g++ -std=c++11 -g3
 
-MAKE	=	/usr/bin/make
-
 SRC_DIR	=	./srcs
 
-BUILTINS	=$(SRC_DIR)/builtins
-
-EXTRA		=$(SRC_DIR)/extra
-
-HISTORY_DIR =	$(SRC_DIR)/history/
-
-VAR_DIR	=	$(SRC_DIR)/variables/
-
-LIB_DIR	=	./lib/my
-
 UT_DIR	=	./tests
-
-LIB_DIR	=	./lib/my
 
 EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Components/Component_4001.cpp	\
@@ -50,10 +36,11 @@ EXE	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
+		$(SRC_DIR)/CLI/CLI.cpp						\
 		$(SRC_DIR)/Parser/Parser.cpp				\
-		$(SRC_DIR)/main.cpp				            \
+		$(SRC_DIR)/main.cpp							\
 
-OBJ	=	$(EXE:.cpp=.o)
+OBJS	=	$(EXE:.cpp=.o)
 
 UT 	= 	$(UT_DIR)/Components/tests_Component_4001.cpp		\
 		$(UT_DIR)/Components/tests_Component_4008.cpp		\
@@ -90,6 +77,7 @@ UT2	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/SpecialComponents/Input.cpp		\
 		$(SRC_DIR)/SpecialComponents/Output.cpp		\
 		$(SRC_DIR)/SpecialComponents/Clock.cpp		\
+		$(SRC_DIR)/CLI/CLI.cpp						\
 		$(SRC_DIR)/Parser/Parser.cpp				\
 		$(SRC_DIR)/Circus/Circus.cpp				\
 
@@ -97,22 +85,23 @@ RM	=	rm -f
 
 CXXFLAGS	+=	-Wall -Wextra
 
+CXXFLAGS	+=	-I./srcs/Components -I./srcs/SpecialComponents
+
+CXXFLAGS	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
+
 UT_FLAGS=	-lcriterion --coverage
-
-INCLUDE	=	-I./includes -I./srcs/Components -I./srcs/SpecialComponents -I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
-
 
 all:		$(NAME)
 
-$(NAME):
-		$(CXX) $(INCLUDE) $(EXE) -o $(NAME)
+$(NAME): $(OBJS) 
+		$(CXX) -o $(NAME) $(OBJS)
 
 tests_run:
 		$(CXX) $(INCLUDE) -o UT $(UT) $(UT2) -lcriterion -coverage
 		./UT
 
 clean:
-		$(RM) $(OBJ)
+		$(RM) $(OBJS)
 
 ut_clean:
 		rm *.gc*
