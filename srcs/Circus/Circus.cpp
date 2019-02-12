@@ -27,21 +27,26 @@ std::vector<nts::IComponent *> Circus::getCircus() const
 
 void Circus::removeComponent(std::string name)
 {
-    for(size_t i = 0; i < my_circus.size(); ++i) {
-        if (my_circus[i]->getName() == name) {
-            my_circus.erase(my_circus.begin() + i);
+    for(auto it = my_circus.begin(); it != my_circus.end(); ++it) {
+        if ((*it)->getName() == name) {
+            it = my_circus.erase(it);
             break;
         }
     }
 }
 
+void Circus::display()
+{
+    for (auto &it : results)
+        std::cout << it << std::endl;
+}
+
 void Circus::lets_run()
 {
-    std::cout << "Start Run !" << std::endl;
-    for(size_t i = 0; i < my_circus.size(); ++i) {
-        if (my_circus[i]->getType() == "Output") {
-            std::cout << my_circus[i]->getName() << std::endl;
-            std::cout << my_circus[i]->compute()<< std::endl;
+    results.clear();
+    for (auto &it : my_circus) {
+        if (it->getType() == "output") {
+            results.push_back(std::string(it->getName()) + std::string("=") + std::to_string(it->compute()));
         }
     }
 }

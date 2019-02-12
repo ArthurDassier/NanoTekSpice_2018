@@ -9,7 +9,7 @@
 
 True::True(std::string name) :
     _name(name),
-    _type("True")
+    _type("true")
 {
 }
 
