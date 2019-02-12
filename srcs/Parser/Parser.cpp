@@ -50,7 +50,6 @@ namespace parser
                 if ((ret = tmp.find_first_not_of('\t')) != std::string::npos)
                     tmp = tmp.substr(ret);
                 circus.addComponent(*(factory.createComponent(it2, tmp)));
-                // std::cout << "add spe comp" << std::endl;
                 try {
                     if (!(tmp.find(' ') == std::string::npos
                         && tmp.find('\t') == std::string::npos))
