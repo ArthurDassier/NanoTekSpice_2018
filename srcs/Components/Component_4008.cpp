@@ -40,11 +40,11 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
     else
         val3 = _C;
     if ((val1 == nts::TRUE && val2 == nts::TRUE)
-    || ((val1 == nts::TRUE ^ val2 == nts::TRUE) && val3 == nts::TRUE))
+    || (((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) && val3 == nts::TRUE))
         _C = nts::TRUE;
     else
         _C = nts::FALSE;
-    if ((val1 == nts::TRUE ^ val2 == nts::TRUE) ^ val3 == nts::TRUE)
+    if (((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) ^ (val3 == nts::TRUE))
         return (nts::TRUE);
     return (nts::FALSE);
 }

@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME	=	nano
+NAME	=	nanotekspice
 
 CXX	=	g++ -std=c++11 -g3
 
@@ -81,6 +81,10 @@ UT2	=	$(SRC_DIR)/Components/Component.cpp			\
 		$(SRC_DIR)/Parser/Parser.cpp				\
 		$(SRC_DIR)/Circus/Circus.cpp				\
 
+OBJS_UT	=	$(UT:.cpp=.o)
+
+OBJS_UT2	=	$(UT2:.cpp=.o)
+
 RM	=	rm -f
 
 CXXFLAGS	+=	-Wall -Wextra
@@ -96,8 +100,8 @@ all:		$(NAME)
 $(NAME): $(OBJS) 
 		$(CXX) -o $(NAME) $(OBJS)
 
-tests_run:
-		$(CXX) $(INCLUDE) -o UT $(UT) $(UT2) -lcriterion -coverage
+tests_run: $(OBJS_UT) $(OBJS_UT2)
+		$(CXX) $(INCLUDE) -o UT $(OBJS_UT) $(OBJS_UT2) -lcriterion -coverage
 		./UT
 
 clean:

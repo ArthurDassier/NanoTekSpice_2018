@@ -27,8 +27,8 @@ nts::Tristate Component_4030::operand(std::size_t in1, std::size_t in2)
 {
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL)
         return (nts::UNDEFINED);
-    if (_list[in1].cmp->compute(_list[in1].output) == nts::TRUE
-    ^ _list[in1].cmp->compute(_list[in1].output) == nts::TRUE)
+    if ((_list[in1].cmp->compute(_list[in1].output) == nts::TRUE)
+    ^ (_list[in1].cmp->compute(_list[in1].output) == nts::TRUE))
         return (nts::TRUE);
     return (nts::FALSE);
 }

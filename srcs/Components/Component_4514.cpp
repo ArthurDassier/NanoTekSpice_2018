@@ -25,7 +25,9 @@ Component_4514::~Component_4514()
 
 nts::Tristate Component_4514::operand(std::size_t in1, std::size_t in2)
 {
-    return nts::UNDEFINED;
+    (void)in1;
+    (void)in2;
+    return (nts::UNDEFINED);
 }
 
 nts::Tristate Component_4514::compute(std::size_t pin)
@@ -34,7 +36,7 @@ nts::Tristate Component_4514::compute(std::size_t pin)
     int b = 2;
     int c = 4;
     int d = 8;
-    int res = 0;
+    unsigned int res = 0;
 
     if (!(check_output(pin)))
         return (nts::UNDEFINED);

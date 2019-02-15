@@ -2,7 +2,7 @@
 
 namespace parser
 {
-    Parser::Parser(std::string name, Circus &my_circus, Factory &my_factory) : filename(name), circus(my_circus), factory(my_factory)
+    Parser::Parser(std::string name, Circus &my_circus, Factory &my_factory) : _circus(my_circus), factory(my_factory), filename(name)
     {
     }
 
@@ -49,7 +49,7 @@ namespace parser
                     tmp = tmp.substr(ret);
                 if ((ret = tmp.find_first_not_of('\t')) != std::string::npos)
                     tmp = tmp.substr(ret);
-                circus.addComponent(*(factory.createComponent(it2, tmp)));
+                _circus.addComponent(*(factory.createComponent(it2, tmp)));
                 try {
                     if (!(tmp.find(' ') == std::string::npos
                         && tmp.find('\t') == std::string::npos))
@@ -88,7 +88,7 @@ namespace parser
                 std::cerr << "Exception: " << main_error << std::endl;
                 exit(-1);
             }
-            std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
+            std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
 
             for (auto &it : tmp_circus) {
                 try {
@@ -100,7 +100,7 @@ namespace parser
                     exit(-1);
                 }
             }
-            circus.addComponent(*(factory.createComponent(type, tmp)));
+            _circus.addComponent(*(factory.createComponent(type, tmp)));
             // std::cout << "add component" << std::endl;
             return true;
         }
@@ -134,7 +134,7 @@ namespace parser
             pin_fem = it.substr(ret + 1);
         }
         // std::cout << "fem: " << fem << " pin_fem: " << pin_fem << " male: " << male << " pin_male: " << pin_male << std::endl;
-        std::vector<nts::IComponent *> tmp_circus = circus.getCircus();
+        std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
         for (auto &it : tmp_circus) {
             if (it->getName() == male) {
                 for (auto &it2 : tmp_circus) {

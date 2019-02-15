@@ -37,6 +37,7 @@ bool Output::getComponent() const
 
 nts::Tristate Output::compute(std::size_t pin)
 {
+    (void)pin;
     return (cmp->compute(output));
 }
 
@@ -54,6 +55,7 @@ bool Output::check_input(std::size_t pin)
 
 bool Output::check_output(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }
 
