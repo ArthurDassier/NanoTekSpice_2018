@@ -33,7 +33,7 @@ namespace parser
         bool ParseLink(std::vector<std::string> &stock, std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
     private:
-        Circus &circus;
+        Circus &_circus;
         Factory &factory;
         std::string filename;
     };

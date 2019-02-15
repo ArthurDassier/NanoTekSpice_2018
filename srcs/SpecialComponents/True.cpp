@@ -41,6 +41,7 @@ void True::dump() const
 
 bool True::check_input(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }
 
@@ -53,5 +54,8 @@ bool True::check_output(std::size_t pin)
 
 void True::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
+    (void)pin;
+    (void)other;
+    (void)otherPin;
     return;
 }

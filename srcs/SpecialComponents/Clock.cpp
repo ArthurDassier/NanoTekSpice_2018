@@ -48,6 +48,7 @@ void Clock::dump() const
 
 bool Clock::check_input(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }
 
@@ -65,5 +66,8 @@ void Clock::setClock(nts::Tristate state)
 
 void Clock::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
+    (void)pin;
+    (void)other;
+    (void)otherPin;
     return;
 }

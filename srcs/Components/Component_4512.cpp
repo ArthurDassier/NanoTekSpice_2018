@@ -25,15 +25,18 @@ Component_4512::~Component_4512()
 
 nts::Tristate Component_4512::compute(std::size_t pin)
 {
+    (void)pin;
     return (nts::UNDEFINED);
 }
 
 bool Component_4512::check_input(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }
 
 bool Component_4512::check_output(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }

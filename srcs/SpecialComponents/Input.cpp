@@ -42,6 +42,7 @@ void Input::dump() const
 
 bool Input::check_input(std::size_t pin)
 {
+    (void)pin;
     return (false);
 }
 
@@ -59,5 +60,8 @@ void Input::setInput(nts::Tristate state)
 
 void Input::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
+    (void)pin;
+    (void)other;
+    (void)otherPin;
     return;
 }
