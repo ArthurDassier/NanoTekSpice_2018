@@ -41,6 +41,7 @@ namespace parser
         void SaveFile(std::vector<std::string> &stock);
         void FindTypeComponentToCreat(std::string &it, std::string &tmp, std::string &type);
         void FindNameComponentToCreat(std::string &it, std::string &tmp, std::string &type);
+        void FinalCheck();
     private:
         Circus &_circus;
         Factory &factory;

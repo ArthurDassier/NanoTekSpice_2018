@@ -79,7 +79,7 @@ namespace parser
                                         std::string &type)
     {
         size_t ret;
-        
+
         tmp = it.substr(type.size());
         if ((ret = tmp.find_first_not_of(' ')) != std::string::npos)
             tmp = tmp.substr(ret);
@@ -185,6 +185,16 @@ namespace parser
         return (false);
     }
 
+    void Parser::FinalCheck()
+    {
+        std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
+
+        for (auto &it : tmp_circus)
+            if (it->getType() == "output")
+                if (!static_cast<Output*>(it)->getComponent())
+                    throw ErrorNano("output not linked");
+    }
+
     bool Parser::ParseFile(std::vector<std::string> &stock)
     {
         mode_e mode = UNKNOW;
@@ -207,6 +217,7 @@ namespace parser
                 if (!ParseLink(it))
                     throw ErrorNano("Invalid link");
         }
+        FinalCheck();
         return (true);
     }
 

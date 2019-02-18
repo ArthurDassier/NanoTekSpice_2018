@@ -7,7 +7,6 @@
 
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
-
 #include "Circus.hpp"
 #include "Factory.hpp"
 #include "Parser.hpp"
@@ -18,6 +17,7 @@ Test(tests_parser, test_basic_and)
     Circus circus;
     Factory factory;
     parser::Parser parser("files/and.nts", circus, factory);
+
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }
@@ -27,6 +27,7 @@ Test(tests_parser, test_basic_nor)
     Circus circus;
     Factory factory;
     parser::Parser parser("files/nor.nts", circus, factory);
+
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }
@@ -36,6 +37,7 @@ Test(tests_parser, test_basic_xor)
     Circus circus;
     Factory factory;
     parser::Parser parser("files/xor.nts", circus, factory);
+
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
 }
@@ -45,8 +47,26 @@ Test(tests_parser, test_basic_adder)
     Circus circus;
     Factory factory;
     parser::Parser parser("files/adder.nts", circus, factory);
+
     parser.LetsParse();
     cr_assert_eq("OK", "OK");
+}
+
+Test(tests_parser, test_ouput_not_linked)
+{
+    Circus circus;
+    Factory factory;
+    parser::Parser parser("files/andOutputNotLinked.nts", circus, factory);
+    std::string tmp;
+    std::ifstream file;
+    std::vector<std::string> stock;
+
+    file.open("files/andOutputNotLinked.nts");
+    while (!file.eof()) {
+        getline(file, tmp);
+        stock.push_back(tmp);
+    }
+    cr_assert_any_throw(parser.ParseFile(stock));
 }
 
 Test(tests_parser, test_main_error)
@@ -55,6 +75,7 @@ Test(tests_parser, test_main_error)
     Factory factory;
     parser::Parser parser("toto", circus, factory);
     std::vector<std::string> stock;
+
     stock.push_back(".links:");
     stock.push_back(".chipsets:");
     cr_assert_eq(parser.CheckMainError(stock), true);
@@ -66,6 +87,7 @@ Test(tests_parser, test_main_error_only_links)
     Factory factory;
     parser::Parser parser("toto", circus, factory);
     std::vector<std::string> stock;
+
     stock.push_back(".links:");
     cr_assert_any_throw(parser.CheckMainError(stock));
 }
@@ -76,6 +98,7 @@ Test(tests_parser, test_main_error_only_chipset)
     Factory factory;
     parser::Parser parser("toto", circus, factory);
     std::vector<std::string> stock;
+
     stock.push_back(".chipsets:");
     cr_assert_any_throw(parser.CheckMainError(stock));
 }
