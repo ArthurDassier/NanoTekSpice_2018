@@ -93,18 +93,20 @@ CXXFLAGS	+=	-I./srcs/Components -I./srcs/SpecialComponents
 
 CXXFLAGS	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
+INCLUDE	=	-I./srcs/Components -I./srcs/SpecialComponents
+
+INCLUDE	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
+
 LD_FLAGS	=	-lcriterion -lgcov
 
 all:		$(NAME)
 
 $(NAME): $(OBJS) 
-		$(CXX) -o $(NAME) $(OBJS)
+		$(CXX) $(INCLUDE) -o $(NAME) $(OBJS)
 
-tests_run: CXXFLAGS += -fprofile-arcs -ftest-coverage
 
-tests_run: $(OBJS_UT) $(OBJS_UT2)
-		$(CXX) -o UT $(OBJS_UT) $(OBJS_UT2) $(LD_FLAGS)
-		./UT
+tests_run:	$(OBJS) 
+			g++ -std=c++11 $(INCLUDE) -o UT $(UT) $(UT2) $(LD_FLAGS)
 
 clean:
 		$(RM) $(OBJS)
