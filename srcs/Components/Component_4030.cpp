@@ -25,16 +25,10 @@ Component_4030::~Component_4030()
 
 nts::Tristate Component_4030::operand(std::size_t in1, std::size_t in2)
 {
-    nts::Tristate one = nts::UNDEFINED;
-    nts::Tristate two = nts::UNDEFINED;
-
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL)
         return (nts::UNDEFINED);
-    one = _list[in1].cmp->compute(_list[in1].output);
-    two = _list[in2].cmp->compute(_list[in2].output);
-    if (one == nts::UNDEFINED || one == nts::UNDEFINED)
-        return (nts::UNDEFINED);
-    if ((one == nts::TRUE) ^ (two == nts::TRUE))
+    if ((_list[in1].cmp->compute(_list[in1].output) == nts::TRUE)
+    ^ (_list[in2].cmp->compute(_list[in2].output)))
         return (nts::TRUE);
     return (nts::FALSE);
 }
