@@ -7,7 +7,7 @@
 
 NAME	=	nanotekspice
 
-CXX	=	g++ -std=c++11
+CXX	=	g++ -std=c++11 -g3
 
 SRC_DIR	=	./srcs
 

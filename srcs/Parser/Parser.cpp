@@ -139,11 +139,14 @@ namespace parser
             if (it->getName() == male) {
                 for (auto &it2 : tmp_circus) {
                     if (it2->getName() == fem) {
-                        if (it->getType() == "input" || it->getType() == "true" || it->getType() == "false" || it->getType() == "clock") {
+                        if (it2->check_input(std::stoi(pin_fem))) {
+                            if (!(it->check_output(std::stoi(pin_male))))
+                                return (false);
                             it2->setLink(static_cast<size_t>(std::stoi(pin_fem)), *it, static_cast<size_t>(std::stoi(pin_male)));
                             return (true);
-                        }
-                        else {
+                        } else {
+                            if (!(it2->check_output(std::stoi(pin_fem))))
+                                return (false);
                             it->setLink(static_cast<size_t>(std::stoi(pin_male)), *it2, static_cast<size_t>(std::stoi(pin_fem)));
                             return (true);
                         }
@@ -151,7 +154,7 @@ namespace parser
                 }
             }
         }
-        return false;
+        return (false);
     }
 
     bool Parser::ParseFile(std::vector<std::string> &stock)
