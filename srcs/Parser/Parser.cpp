@@ -21,17 +21,17 @@ namespace parser
                 chipset = true;
         }
         if (!chipset) {
-            throw "Miss Chipset part";
+            throw ErrorNano("Miss Chipset part");
             return false;
         }
         if (!link) {
-            throw "Miss Link part";
+            throw ErrorNano("Miss Link part");
             return false;
         }
         return true;
     }
 
-    bool Parser::ParseChipset(std::vector<std::string> &stock, std::string &it)
+    bool Parser::ParseChipset(std::string &it)
     {
         const std::string SpeComp[5] = {"input", "clock", "false", "true", "output"};
         const std::string comps[] = {"4001", "4008", "4013", "4011", "4017", "4030"
@@ -53,10 +53,10 @@ namespace parser
                 try {
                     if (!(tmp.find(' ') == std::string::npos
                         && tmp.find('\t') == std::string::npos))
-                        throw "this special component doesn't have name !!";
+                        throw ErrorNano("this special component doesn't have name !!");
                 }
-                catch (const char* &main_error) {
-                    std::cerr << "Exception: " << main_error << std::endl;
+                catch (const ErrorNano &main_error) {
+                    std::cerr << "Exception: " << main_error.what() << std::endl;
                     exit(-1);
                 }
                 return true;
@@ -82,10 +82,10 @@ namespace parser
             try {
                 if (!(tmp.find(' ') == std::string::npos
                     && tmp.find('\t') == std::string::npos))
-                    throw "this component doesn't have name !!";
+                    throw ErrorNano("this component doesn't have name !!");
             }
-            catch (const char* &main_error) {
-                std::cerr << "Exception: " << main_error << std::endl;
+            catch (const ErrorNano &main_error) {
+                std::cerr << "Exception: " << main_error.what() << std::endl;
                 exit(-1);
             }
             std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
@@ -93,23 +93,22 @@ namespace parser
             for (auto &it : tmp_circus) {
                 try {
                     if (it->getName() == tmp)
-                        throw "this component already exist";
+                        throw ErrorNano("this component already exist");
                 }
-                catch (const char* &main_error) {
-                    std::cerr << "Exception: " << main_error << std::endl;
+                catch (const ErrorNano &main_error) {
+                    std::cerr << "Exception: " << main_error.what() << std::endl;
                     exit(-1);
                 }
             }
             _circus.addComponent(*(factory.createComponent(type, tmp)));
-            // std::cout << "add component" << std::endl;
             return true;
         }
         if (it != "")
-            throw std::invalid_argument("Invalid syntax ! : '" + it + "'");
+            throw ErrorNano("Invalid syntax ! : '" + it + "'");
         return true;
     }
 
-    bool Parser::ParseLink(std::vector<std::string> &stock, std::string &it)
+    bool Parser::ParseLink(std::string &it)
     {
         size_t ret;
         size_t ret2;
@@ -133,7 +132,6 @@ namespace parser
             fem = it.substr(ret2 + 1, ret - (ret2 + 1));
             pin_fem = it.substr(ret + 1);
         }
-        // std::cout << "fem: " << fem << " pin_fem: " << pin_fem << " male: " << male << " pin_male: " << pin_male << std::endl;
         std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
         for (auto &it : tmp_circus) {
             if (it->getName() == male) {
@@ -174,19 +172,19 @@ namespace parser
                 continue;
             if (mode == CHIPSET) {
                 try {
-                    if (!ParseChipset(stock, it))
-                        throw "Invalid chipset";
-                } catch (const std::invalid_argument &error_chipset) {
+                    if (!ParseChipset(it))
+                        throw ErrorNano("Invalid chipset");
+                } catch (const ErrorNano &error_chipset) {
                     std::cerr << error_chipset.what() << std::endl;
                     exit(-1);
                 }
             }
             else {
                 try {
-                    if (!ParseLink(stock, it))
-                        throw "Invalid link";
+                    if (!ParseLink(it))
+                        throw ErrorNano("Invalid link");
                 }
-                catch (const std::invalid_argument &error_chipset) {
+                catch (const ErrorNano &error_chipset) {
                     std::cerr << error_chipset.what() << std::endl;
                     exit(-1);
                 }
@@ -204,19 +202,19 @@ namespace parser
         file.open(filename);
         try {
             if (!file.is_open())
-                throw "Open fail, the file doesn't existe ?";
+                throw ErrorNano("Open fail, the file doesn't existe ?");
             while (!file.eof()) {
                 getline(file, tmp);
                 stock.push_back(tmp);
             }
-        } catch(const std::string &open) {
-            std::cerr << "Exception: " << open << std::endl;
+        } catch(const ErrorNano &open) {
+            std::cerr << "Exception: " << open.what() << std::endl;
             exit(-1);
         }
         try {
             CheckMainError(stock);
-        } catch(const char* &main_error) {
-            std::cerr << "Exception: " << main_error << std::endl;
+        } catch(const ErrorNano &main_error) {
+            std::cerr << "Exception: " << main_error.what() << std::endl;
             exit(-1);
         }
         ParseFile(stock);

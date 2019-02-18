@@ -14,6 +14,7 @@
 #include "Output.hpp"
 #include "True.hpp"
 #include "Factory.hpp"
+#include "error.hpp"
 
 namespace parser
 {
@@ -29,8 +30,8 @@ namespace parser
         ~Parser();
         void LetsParse();
         bool ParseFile(std::vector<std::string> &stock);
-        bool ParseChipset(std::vector<std::string> &stock, std::string &it);
-        bool ParseLink(std::vector<std::string> &stock, std::string &it);
+        bool ParseChipset(std::string &it);
+        bool ParseLink(std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
     private:
         Circus &_circus;
