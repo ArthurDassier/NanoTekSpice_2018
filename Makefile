@@ -97,7 +97,7 @@ INCLUDE	=	-I./srcs/Components -I./srcs/SpecialComponents
 
 INCLUDE	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
-LD_FLAGS	=	-lcriterion -lgcov
+LD_FLAGS	=	-lcriterion -coverage
 
 all:		$(NAME)
 
@@ -107,6 +107,7 @@ $(NAME): $(OBJS)
 
 tests_run:	$(OBJS) 
 			g++ -std=c++11 $(INCLUDE) -o UT $(UT) $(UT2) $(LD_FLAGS)
+			./UT
 
 clean:
 		$(RM) $(OBJS)
