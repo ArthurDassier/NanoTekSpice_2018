@@ -27,7 +27,8 @@ void CLI::start(void)
 
     while (1) {
         std::cout << "> ";
-        getline(std::cin, line);
+        if (!(getline(std::cin, line)))
+            return;
         if (line == "exit")
             return;
         else if (line == "simulate")
