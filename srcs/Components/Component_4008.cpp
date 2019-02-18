@@ -29,7 +29,7 @@ Component_4008::~Component_4008()
 
 nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::size_t in3)
 {
-    nts::Tristate val3;
+    nts::Tristate val3 = nts::UNDEFINED;
 
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL || _list[in3].cmp == NULL)
         return (nts::UNDEFINED);
@@ -39,23 +39,32 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
         val3 = _list[in3].cmp->compute(_list[in3].output);
     else
         val3 = _C;
-    if ((val1 == nts::TRUE && val2 == nts::TRUE)
-    || (((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) && val3 == nts::TRUE))
+    if (val1 == nts::TRUE && val2 == nts::TRUE)
         _C = nts::TRUE;
-    else
+    if (val1 == nts::FALSE && val2 == nts::FALSE)
         _C = nts::FALSE;
-    if (((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) ^ (val3 == nts::TRUE))
+
+    if ((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) {
+        if (val3 == nts::TRUE) {
+            _C = nts::TRUE;
+            return (nts::FALSE);
+        } else {
+            _C = nts::FALSE;
+            return (nts::TRUE);
+        }
+    }
+    if (val3 == nts::TRUE)
         return (nts::TRUE);
-    return (nts::FALSE);
+    else
+        return (nts::FALSE);
 }
 
 nts::Tristate Component_4008::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (pin == 10) {
+    if (pin == 10)
         return (operand(6, 7, 9));
-    }
     if (pin == 11) {
         compute(10);
         return (operand(4, 5, 10));
