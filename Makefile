@@ -93,15 +93,17 @@ CXXFLAGS	+=	-I./srcs/Components -I./srcs/SpecialComponents
 
 CXXFLAGS	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
-UT_FLAGS	=	-lcriterion -coverage
+LD_FLAGS	=	-lcriterion -lgcov
 
 all:		$(NAME)
 
 $(NAME): $(OBJS) 
 		$(CXX) -o $(NAME) $(OBJS)
 
+tests_run: CXXFLAGS += -fprofile-arcs -ftest-coverage
+
 tests_run: $(OBJS_UT) $(OBJS_UT2)
-		$(CXX) -o UT $(OBJS_UT) $(OBJS_UT2) $(UT_FLAGS)
+		$(CXX) -o UT $(OBJS_UT) $(OBJS_UT2) $(LD_FLAGS)
 		./UT
 
 clean:
@@ -109,7 +111,7 @@ clean:
 
 ut_clean:
 		$(RM) $(OBJS_UT) $(OBJS_UT2)
-		$(RM) *.gc*
+		find \( -name "*.gc*" -o -name "#*#" \) -delete
 		$(RM) UT
 
 fclean:		clean
