@@ -80,5 +80,5 @@ Test(tests_Component_4030, test_truth_table)
     cr_assert_eq(test.compute(4), nts::FALSE);
     test.setLink(8, tru, 1);
     test.setLink(9, fals, 1);
-    cr_assert_eq(test.compute(10), nts::FALSE);
+    cr_assert_eq(test.compute(10), nts::TRUE);
 }

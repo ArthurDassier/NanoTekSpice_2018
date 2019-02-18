@@ -7,7 +7,7 @@
 
 NAME	=	nanotekspice
 
-CXX	=	g++ -std=c++11 -g3
+CXX	=	g++ -std=c++11
 
 SRC_DIR	=	./srcs
 
@@ -85,7 +85,7 @@ OBJS_UT	=	$(UT:.cpp=.o)
 
 OBJS_UT2	=	$(UT2:.cpp=.o)
 
-RM	=	rm -f
+RM	=	rm -rf
 
 CXXFLAGS	+=	-Wall -Wextra
 
@@ -93,23 +93,26 @@ CXXFLAGS	+=	-I./srcs/Components -I./srcs/SpecialComponents
 
 CXXFLAGS	+=	-I./srcs/Parser -I./srcs/Circus -I./srcs/ -I./srcs/CLI
 
-UT_FLAGS=	-lcriterion --coverage
+LD_FLAGS	=	-lcriterion -lgcov
 
 all:		$(NAME)
 
 $(NAME): $(OBJS) 
 		$(CXX) -o $(NAME) $(OBJS)
 
+tests_run: CXXFLAGS += -fprofile-arcs -ftest-coverage
+
 tests_run: $(OBJS_UT) $(OBJS_UT2)
-		$(CXX) $(INCLUDE) -o UT $(OBJS_UT) $(OBJS_UT2) -lcriterion -coverage
+		$(CXX) -o UT $(OBJS_UT) $(OBJS_UT2) $(LD_FLAGS)
 		./UT
 
 clean:
 		$(RM) $(OBJS)
 
 ut_clean:
-		rm *.gc*
-		rm UT
+		$(RM) $(OBJS_UT) $(OBJS_UT2)
+		find \( -name "*.gc*" -o -name "#*#" \) -delete
+		$(RM) UT
 
 fclean:		clean
 		$(RM) $(NAME)
