@@ -33,6 +33,14 @@ namespace parser
         bool ParseChipset(std::string &it);
         bool ParseLink(std::string &it);
         bool CheckMainError(std::vector<std::string> &stock);
+        bool BuildLink(std::string pin_male, std::string pin_fem, nts::IComponent *it, nts::IComponent *it2);
+        void FindPinComponentToLink(std::string &it,std::string &male, std::string &pin_male, std::string &fem, std::string &pin_fem);
+        bool ParseChipsetFindSpeComp(std::string &it);
+        void FindComponentToCreat(std::string &it, std::string &tmp, std::string &type);
+        bool ParseChipsetFindComp(std::string &it);
+        void SaveFile(std::vector<std::string> &stock);
+        void FindTypeComponentToCreat(std::string &it, std::string &tmp, std::string &type);
+        void FindNameComponentToCreat(std::string &it, std::string &tmp, std::string &type);
     private:
         Circus &_circus;
         Factory &factory;
