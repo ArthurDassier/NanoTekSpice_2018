@@ -189,10 +189,11 @@ namespace parser
     {
         std::vector<nts::IComponent *> tmp_circus = _circus.getCircus();
 
-        for (auto &it : tmp_circus)
+        for (auto &it : tmp_circus) {
             if (it->getType() == "output")
                 if (!static_cast<Output*>(it)->getComponent())
                     throw ErrorNano("output not linked");
+        }
     }
 
     bool Parser::ParseFile(std::vector<std::string> &stock)
@@ -236,7 +237,7 @@ namespace parser
             }
         } catch(const ErrorNano &open) {
             std::cerr << "Exception: " << open.what() << std::endl;
-            exit(-1);
+            exit(84);
         }
     }
 
@@ -249,13 +250,13 @@ namespace parser
             CheckMainError(stock);
         } catch(const ErrorNano &main_error) {
             std::cerr << "Exception: " << main_error.what() << std::endl;
-            exit(-1);
+            exit(84);
         }
         try {
             ParseFile(stock);
         } catch (const ErrorNano &error_parsing) {
             std::cerr << error_parsing.what() << std::endl;
-            exit(-1);
+            exit(84);
         }
     }
 }

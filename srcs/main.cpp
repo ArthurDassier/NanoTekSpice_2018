@@ -30,7 +30,12 @@ int main(int ac, char **av)
             }
         }
     }
-    circus.lets_run();
+    try {
+        circus.lets_run();
+    } catch(const ErrorNano &open) {
+        std::cerr << "Exception: " << open.what() << std::endl;
+        exit(84);
+    }
     circus.display();
     my_CLI.start();
     return (0);

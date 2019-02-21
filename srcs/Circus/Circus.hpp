@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 #include "IComponent.hpp"
+#include "Input.hpp"
+#include "Clock.hpp"
+#include "error.hpp"
 
 class Circus {
     public:
