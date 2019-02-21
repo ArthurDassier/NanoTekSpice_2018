@@ -30,9 +30,6 @@ nts::Tristate Component_4001::operand(std::size_t in1, std::size_t in2)
     if (_list[in1].cmp->compute(_list[in1].output) == nts::TRUE
     || _list[in2].cmp->compute(_list[in2].output) == nts::TRUE)
         return (nts::FALSE);
-    else if (_list[in1].cmp->compute(_list[in1].output) == nts::UNDEFINED
-    || _list[in2].cmp->compute(_list[in2].output) == nts::UNDEFINED)
-        return (nts::UNDEFINED);
     else
         return (nts::TRUE);
 }
