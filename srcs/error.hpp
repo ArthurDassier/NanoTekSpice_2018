@@ -1,3 +1,6 @@
+#ifndef ERROR_HPP
+#define ERROR_HPP
+
 #include <exception>
 #include <iostream>
 
@@ -13,3 +16,5 @@ public:
 private:
     std::string _msg;
 };
+
+#endif

@@ -31,8 +31,14 @@ void CLI::start(void)
             return;
         if (line == "exit")
             return;
-        else if (line == "simulate")
-            circus.lets_run();
+        else if (line == "simulate") {
+            try {
+                circus.lets_run();
+            } catch(const ErrorNano &open) {
+                std::cerr << "Exception: " << open.what() << std::endl;
+                exit (84);
+            }
+        }
         else if (line == "display")
             circus.display();
         else {

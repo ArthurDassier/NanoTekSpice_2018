@@ -45,7 +45,18 @@ void Circus::lets_run()
 {
     results.clear();
     for (auto &it : my_circus) {
+        if (it->getType() == "input")
+            if (static_cast<Input*>(it)->compute(1) == nts::UNDEFINED)
+                throw ErrorNano("input not set");
+        if (it->getType() == "clock")
+            if (static_cast<Clock*>(it)->compute(1) == nts::UNDEFINED)
+                throw ErrorNano("clock not set");
+    }
+    for (auto &it : my_circus) {
         if (it->getType() == "output")
-            results.push_back(std::string(it->getName()) + std::string("=") + std::to_string(it->compute()));
+            results.push_back(std::string(it->getName())
+                + std::string("=")
+                + std::to_string(it->compute()));
+
     }
 }
