@@ -43,6 +43,9 @@ void Circus::display()
 
 void Circus::lets_run()
 {
+    std::string str_res;
+    int res = 0;
+
     results.clear();
     for (auto &it : my_circus) {
         if (it->getType() == "input")
@@ -53,10 +56,15 @@ void Circus::lets_run()
                 throw ErrorNano("clock not set");
     }
     for (auto &it : my_circus) {
-        if (it->getType() == "output")
+        if (it->getType() == "output") {
+            res = it->compute();
+            if (res == -1)
+                str_res = std::string("U");
+            else
+                str_res = std::to_string(res);
             results.push_back(std::string(it->getName())
                 + std::string("=")
-                + std::to_string(it->compute()));
-
+                + str_res);
+        }
     }
 }
