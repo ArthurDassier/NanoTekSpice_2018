@@ -36,9 +36,13 @@ nts::Tristate Component_4514::compute(std::size_t pin)
     int b = 2;
     int c = 4;
     int d = 8;
-    unsigned int res = 0;
+    size_t res = 0;
+    nts::Tristate val;
 
     if (!(check_output(pin)))
+        return (nts::UNDEFINED);
+    if (_list[1].cmp == NULL || _list[3].cmp == NULL || _list[21].cmp == NULL
+    ||_list[22].cmp == NULL || _list[23].cmp == NULL)
         return (nts::UNDEFINED);
     if (_list[1].cmp->compute(_list[1].output) == nts::TRUE)
         res += a;
@@ -48,16 +52,17 @@ nts::Tristate Component_4514::compute(std::size_t pin)
         res += c;
     if (_list[22].cmp->compute(_list[22].output) == nts::TRUE)
         res += d;
+    val = _list[23].cmp->compute(_list[23].output);
     if (pin <= 11) {
-        if ((res + 4) == pin && _list[23].cmp->compute(_list[23].output) == nts::FALSE)
+        if ((res + 4) == pin && val == nts::FALSE)
             return (nts::TRUE);
-        if ((res + 4) == pin && _list[23].cmp->compute(_list[23].output) == nts::TRUE)
+        if ((res + 4) == pin && val == nts::TRUE)
             return (nts::FALSE);
     }
     if (pin >= 13) {
-        if ((res + 5) == pin && _list[23].cmp->compute(_list[23].output) == nts::FALSE)
+        if ((res + 5) == pin && val == nts::FALSE)
             return (nts::TRUE);
-        if ((res + 5) == pin && _list[23].cmp->compute(_list[23].output) == nts::TRUE)
+        if ((res + 5) == pin && val == nts::TRUE)
             return (nts::FALSE);
     }
     return (nts::UNDEFINED);

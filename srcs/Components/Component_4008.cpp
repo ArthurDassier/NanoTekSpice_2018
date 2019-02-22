@@ -39,11 +39,12 @@ nts::Tristate Component_4008::operand(std::size_t in1, std::size_t in2, std::siz
         val3 = _list[in3].cmp->compute(_list[in3].output);
     else
         val3 = _C;
+    if (val1 == nts::UNDEFINED || val2 == nts::UNDEFINED || val3 == nts::UNDEFINED)
+        return (nts::UNDEFINED);
     if (val1 == nts::TRUE && val2 == nts::TRUE)
         _C = nts::TRUE;
     if (val1 == nts::FALSE && val2 == nts::FALSE)
         _C = nts::FALSE;
-
     if ((val1 == nts::TRUE) ^ (val2 == nts::TRUE)) {
         if (val3 == nts::TRUE) {
             _C = nts::TRUE;

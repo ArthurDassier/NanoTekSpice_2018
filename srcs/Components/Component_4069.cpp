@@ -25,22 +25,29 @@ Component_4069::~Component_4069()
 
 nts::Tristate Component_4069::compute(std::size_t pin)
 {
+    nts::Tristate val;
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
     if (pin < 7) {
         if (_list[pin - 1].cmp == NULL)
             return (nts::UNDEFINED);
-        if (_list[pin - 1].cmp->compute(_list[pin - 1].output) == nts::TRUE)
+        val = _list[pin - 1].cmp->compute(_list[pin - 1].output);
+        if (val == nts::TRUE)
             return (nts::FALSE);
+        else if (val == nts::UNDEFINED)
+            return (nts::UNDEFINED);
         else
             return (nts::TRUE);
     }
     if (_list[pin + 1].cmp == NULL)
         return (nts::UNDEFINED);
-    if (_list[pin + 1].cmp->compute(_list[pin + 1].output) == nts::TRUE)
+    val = _list[pin + 1].cmp->compute(_list[pin + 1].output);
+    if (val == nts::TRUE)
             return (nts::FALSE);
-        else
-            return (nts::TRUE);
+    else if (val == nts::UNDEFINED)
+        return (nts::UNDEFINED);
+    else
+        return (nts::TRUE);
 }
 
 bool Component_4069::check_input(std::size_t pin)
