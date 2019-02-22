@@ -28,8 +28,14 @@ nts::Tristate Component_4071::operand(std::size_t in1, std::size_t in2)
 {
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL)
         return (nts::UNDEFINED);
-    if (_list[in1].cmp->compute(_list[in1].output) == nts::TRUE
-    || _list[in2].cmp->compute(_list[in2].output) == nts::TRUE)
+    nts::Tristate one = _list[in1].cmp->compute(_list[in1].output);
+    nts::Tristate two = _list[in2].cmp->compute(_list[in2].output);
+    if (one == nts::UNDEFINED || two == nts::UNDEFINED) {
+        if (one == nts::TRUE || two == nts::TRUE)
+            return (nts::TRUE);
+        return (nts::UNDEFINED);
+    }
+    if (one == nts::TRUE || two == nts::TRUE)
         return (nts::TRUE);
     return (nts::FALSE);
 }
@@ -63,4 +69,3 @@ bool Component_4071::check_output(std::size_t pin)
         return (true);
     return (false);
 }
-

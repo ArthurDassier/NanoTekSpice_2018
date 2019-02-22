@@ -12,6 +12,7 @@
 #include "Component_4001.hpp"
 #include "True.hpp"
 #include "False.hpp"
+#include "Input.hpp"
 
 Test(tests_Component_4001, test_check_construction)
 {
@@ -70,8 +71,10 @@ Test(tests_Component_4001, test_truth_table)
     Component_4001 test("test");
     True tru("tru");
     False fals("fals");
+    Input undef("undef");
 
     cr_assert_eq(test.compute(3), nts::UNDEFINED);
+    cr_assert_eq(test.compute(300), nts::UNDEFINED);
     test.setLink(1, tru, 1);
     test.setLink(2, tru, 1);
     cr_assert_eq(test.compute(3), nts::FALSE);
@@ -84,4 +87,10 @@ Test(tests_Component_4001, test_truth_table)
     test.setLink(1, fals, 1);
     test.setLink(2, tru, 1);
     cr_assert_eq(test.compute(3), nts::FALSE);
+    cr_assert_eq(test.compute(4), nts::UNDEFINED);
+    test.setLink(6, fals, 1);
+    test.setLink(5, undef, 1);
+    cr_assert_eq(test.compute(4), nts::UNDEFINED);
+    test.setLink(6, tru, 1);
+    cr_assert_eq(test.compute(4), nts::FALSE);
 }

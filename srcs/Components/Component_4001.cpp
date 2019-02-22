@@ -27,12 +27,15 @@ nts::Tristate Component_4001::operand(std::size_t in1, std::size_t in2)
 {
     if (_list[in1].cmp == NULL || _list[in2].cmp == NULL)
         return (nts::UNDEFINED);
-    if (_list[in1].cmp->compute(_list[in1].output) == nts::TRUE
-    || _list[in2].cmp->compute(_list[in2].output) == nts::TRUE)
-        return (nts::FALSE);
-    else if (_list[in1].cmp->compute(_list[in1].output) == nts::UNDEFINED
-    || _list[in2].cmp->compute(_list[in2].output) == nts::UNDEFINED)
+    nts::Tristate one = _list[in1].cmp->compute(_list[in1].output);
+    nts::Tristate two = _list[in2].cmp->compute(_list[in2].output);
+    if (one == nts::UNDEFINED || two == nts::UNDEFINED) {
+        if (one == nts::TRUE || two == nts::TRUE)
+            return (nts::FALSE);
         return (nts::UNDEFINED);
+    }
+    if (one == nts::TRUE || two == nts::TRUE)
+        return (nts::FALSE);
     else
         return (nts::TRUE);
 }

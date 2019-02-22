@@ -50,6 +50,7 @@ UT 	= 	$(UT_DIR)/Components/tests_Component_4001.cpp		\
 		$(UT_DIR)/Components/tests_Component_4071.cpp		\
 		$(UT_DIR)/Components/tests_Component_4081.cpp		\
 		$(UT_DIR)/Components/tests_Component_4503.cpp		\
+		$(UT_DIR)/Components/tests_Component_4514.cpp		\
 		$(UT_DIR)/Components/tests_SpecialComponents.cpp	\
 		$(UT_DIR)/Circus/tests_Circus.cpp					\
 		$(UT_DIR)/Factory/tests_Factory.cpp					\

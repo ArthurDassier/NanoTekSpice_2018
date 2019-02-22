@@ -11,8 +11,6 @@ Component_4094::Component_4094(std::string name)
 {
     _name = name;
     _type = "4094";
-    // for(size_t i = 1; i != 14; ++i)
-    //    output[i] = 0;
 }
 
 Component_4094::~Component_4094()

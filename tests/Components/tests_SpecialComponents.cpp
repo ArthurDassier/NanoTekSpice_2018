@@ -52,6 +52,7 @@ Test(tests_Special_Components, test_clock)
     test.setClock(nts::TRUE);
     cr_assert_eq(test.compute(1), nts::TRUE);
     cr_assert_eq(test.compute(1), nts::FALSE);
+    cr_assert_eq(test.compute(300), nts::UNDEFINED);
 }
 
 Test(tests_Special_Components, test_output)
@@ -75,6 +76,7 @@ Test(tests_Special_Components, test_input)
     cr_assert_eq(test.check_output(2), false);
     test.setInput(nts::TRUE);
     cr_assert_eq(test.compute(1), nts::TRUE);
+    cr_assert_eq(test.compute(300), nts::UNDEFINED);
 }
 
 Test(tests_Special_Components, test_true)
