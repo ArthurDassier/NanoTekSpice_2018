@@ -66,5 +66,6 @@ void Circus::lets_run()
                 + std::string("=")
                 + str_res);
         }
+
     }
 }
