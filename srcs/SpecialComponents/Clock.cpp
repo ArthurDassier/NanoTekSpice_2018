@@ -59,7 +59,7 @@ bool Clock::check_output(std::size_t pin)
     return (false);
 }
 
-void Clock::setClock(nts::Tristate state)
+void Clock::setInput(nts::Tristate state)
 {
     _input = state;
 }

@@ -49,7 +49,7 @@ Test(tests_Special_Components, test_clock)
     cr_assert_eq(test.check_input(1), false);
     cr_assert_eq(test.check_output(1), true);
     cr_assert_eq(test.check_output(2), false);
-    test.setClock(nts::TRUE);
+    test.setInput(nts::TRUE);
     cr_assert_eq(test.compute(1), nts::TRUE);
     cr_assert_eq(test.compute(1), nts::FALSE);
     cr_assert_eq(test.compute(300), nts::UNDEFINED);
