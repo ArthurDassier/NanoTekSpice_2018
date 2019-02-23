@@ -66,6 +66,9 @@ void Circus::lets_run()
                 + std::string("=")
                 + str_res);
         }
-
+    }
+    for (auto &it : my_circus) {
+        if (it->getType() == "clock")
+            static_cast<Clock*>(it)->changeClock();
     }
 }
