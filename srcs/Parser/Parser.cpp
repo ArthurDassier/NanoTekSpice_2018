@@ -46,7 +46,7 @@ namespace parser
                 _circus.addComponent(*(factory.createComponent(it2, tmp)));
                 if (!(tmp.find(' ') == std::string::npos
                     && tmp.find('\t') == std::string::npos))
-                    throw ErrorNano("this special component doesn't have name !!");
+                    throw ErrorNano("this special component doesn't have a name !!");
                 return (true);
             }
         }
@@ -87,7 +87,7 @@ namespace parser
             tmp = tmp.substr(ret);
         if (!(tmp.find(' ') == std::string::npos
             && tmp.find('\t') == std::string::npos))
-            throw ErrorNano("this component doesn't have name !!");
+            throw ErrorNano("this component doesn't have a name !!");
     }
 
     void Parser::FindComponentToCreat(std::string &it, std::string &tmp,
