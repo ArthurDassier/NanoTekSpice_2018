@@ -2,7 +2,7 @@
 # 5 bits and gate
 
 .chipsets:
-input		a
+clock		a
 input		b
 input		c
 input		d
