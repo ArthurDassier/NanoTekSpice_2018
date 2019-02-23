@@ -32,7 +32,6 @@ nts::Tristate Clock::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    std::cout << _input << std::endl;
     if (_input == nts::TRUE)
         return (nts::TRUE);
     else
