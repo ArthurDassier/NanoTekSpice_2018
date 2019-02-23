@@ -21,6 +21,7 @@ class Clock : public nts::IComponent
         void dump() const;
         void setLink(std::size_t, nts::IComponent &, std::size_t);
         void setInput(nts::Tristate);
+        void changeClock();
         std::string getName() const;
         std::string getType() const;
 

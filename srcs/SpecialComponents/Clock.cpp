@@ -32,13 +32,10 @@ nts::Tristate Clock::compute(std::size_t pin)
 {
     if (!(check_output(pin)))
         return (nts::UNDEFINED);
-    if (_input == nts::TRUE) {
-        _input = nts::FALSE;
+    if (_input == nts::TRUE)
         return (nts::TRUE);
-    } else {
-        _input = nts::TRUE;
+    else
         return (nts::FALSE);
-    }
 }
 
 void Clock::dump() const
@@ -62,6 +59,14 @@ bool Clock::check_output(std::size_t pin)
 void Clock::setInput(nts::Tristate state)
 {
     _input = state;
+}
+
+void Clock::changeClock()
+{
+    if (_input == nts::FALSE)
+        _input = nts::TRUE;
+    else
+        _input = nts::FALSE;
 }
 
 void Clock::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
